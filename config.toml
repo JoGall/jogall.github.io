@@ -1,6 +1,6 @@
 baseurl = "https://jogall.github.io"
+publishDir = "docs"
 DefaultContentLanguage = "en"
-#DefaultContentLanguage = "ja"
 title = "Beautiful Hugo"
 theme = "beautifulhugo"
 metaDataFormat = "yaml"
