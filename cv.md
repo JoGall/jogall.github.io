@@ -27,6 +27,8 @@ Projects
 
 **[`Rubitrail`](https://github.com/JoGall/rubitrail)**: An R package for quantifying locomotion from Ubitrail tracking software
 
+**[`FantasyPL`](https://github.com/JoGall/FantasyPL)**: R scripts for scraping player and manager data from Fantasy Premier League and performing predictive analytics
+
 See [github repos](https://github.com/JoGall) for more.
 
 
@@ -42,18 +44,16 @@ Skills
 ---------
 #### Technical skills
 
-* **R programming:** statistical analysis (regression, general linear models, mixed modeling, principal component analysis, etc…), machine learning (classification, resampling, random forest), trajectory analysis, graphical visualisation (ggplot2), package development and documentation (using knitr)
+* **R programming:** statistical analysis (regression, general linear models, mixed modeling, principal component analysis, etc…), machine learning (classification, resampling, random forest), spatiotemporal data analysis
+* **Graphical visualisation and web applications**: [R shiny](https://jdgallagher.shinyapps.io/seasonStats/), [plotly](https://plot.ly/~jogal)
 * **Microsoft Excel:** pivot tables, VLOOKUP, macros
 * **Computer vision:** automated analysis of microscopy images used in invertebrate immunology assays (C++); developed motion tracking software (C++) to quantify insect locomotion and behaviour 
 * **Web development:** HTML5, CSS3, some JavaScript, PHP
 * **Relational databases:** design and queries (MySQL, SQLite); basic administration (phpmyadmin)
 * **Web scraping** and **data / text mining** (JSON/XML)
 * **Bash** scripting on Linux OS
-* Use of scientific databases (e.g. Web of Science for citation indexing)
 
 #### Communication, teaching, and teamwork skills
-* **Published** in peer-reviewed scientific journals (available on request)
-* **Reviewed** for peer-reviewed scientific journals
 * Oral and poster **presentations** at scientific conferences
 * **Teaching assistant** on numerous undergraduate laboratory practicals
 (2011 – 2015)
