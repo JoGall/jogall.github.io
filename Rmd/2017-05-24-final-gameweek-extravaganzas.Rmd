@@ -1,0 +1,342 @@
+---
+layout: post
+title: Final matchday goal bonanzas
+subtitle: Did this season give us the highest scoring final gameweek ever?
+date: "`r Sys.Date()`"
+tags: [R, soccer]
+output: 
+  md_document:
+    variant: markdown_github
+    preserve_yaml: true
+bigimg: /img/goal.jpg
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Sunday's conclusion to the 2016-17 EPL season produced an impressive haul of 37 goals. What's more, they were all delivered in the space of 2 hours thanks to the final round of games being played simultaneously - truly the stuff dreams are made of for those watching at home.
+
+Those 37 goals make this season's finale the biggest scoring final round of fixtures in the 38-games-a-season era, but is this an all-time record? And how do final matchdays compare to the rest of the season - are they really the goalscoring extravaganzas they seem?
+
+_____
+
+Let's set up R in the same way as previous posts to answer these questions.
+
+```{r message=FALSE}
+devtools::install_github("jalapic/engsoccerdata")
+library(engsoccerdata)
+require(dplyr)
+require(ggplot2)
+
+# Update 'england' dataframe if there are new results
+england <- rbind(england, subset(england_current(), !(Date %in% england$Date & home %in% england$home)))
+
+# Subset to PL era and prettify the season variable for plotting (e.g. '2016' -> '2016-17')
+EPL <- subset(england, tier == 1 & Season %in% 1992:2016) %>%
+  mutate(season = as.factor(paste0(Season, "-", substr(Season+1, 3, 4))))
+```
+
+### Highest scoring final rounds
+
+First thing to do is take a look at the number of goals scored in final rounds - that's the last 10 games in seasons with 20 teams in the league and the last 11 games when there's 22 teams.
+
+```{r}
+lapply(unique(EPL$season), function(x) {
+    #subset
+    ss <- subset(EPL, season == x)
+    #get number of games played in final round (i.e. 10 when 38 games a season, 11 when 42)
+    GP <- n_distinct(ss$home) / 2
+    #summarise
+    ss %>%
+      arrange(Date) %>%
+      tail(GP) %>%
+      summarise(season = as.factor(x), last.goals = sum(totgoal), GP)
+}) %>%
+plyr::rbind.fill() %>%
+arrange(-last.goals)
+```
+
+The final round of games in the 1992-93 season stands out on top with an astronomical 57 goals scored. Let's have a look at those results:
+
+```{r}
+EPL %>%
+  arrange(Date) %>%
+  subset(Season == 1992) %>%
+  select(Date, home, visitor, FT) %>%
+  tail(11)
+```
+
+An 8-goal thriller, two 7-goal thrillers, three 6-goals games; in fact, not one team failed to score - must have been some Match Of The Day. (Watch this space for an incoming post on the best MotD ever, i.e. highest scoring **days**)
+
+Now we might expect this number to be a bit higher as there were 11 games played per gameweek in that season, so let's normalise the data to make these figures in terms of goals per game just to be fair.
+
+```{r}
+lapply(unique(EPL$season), function(x) {
+    #subset
+    ss <- subset(EPL, season == x)
+    #get number of games played in final round
+    GP <- n_distinct(ss$home) / 2
+    #summarise
+    ss %>%
+      arrange(Date) %>%
+      tail(GP) %>%
+      summarise(season = as.factor(x), last.goals.mean = round(sum(totgoal) / GP, 2))
+}) %>%
+  plyr::rbind.fill() %>%
+  arrange(-last.goals.mean) %>%
+  head(5)
+```
+
+It's still far and away the highest scoring final round with 40% more goals per game than this season's finale.
+
+How does this compare to the all-time top-flight records, including the old First Division going all the way back to the 1888-89 season?
+
+```{r}
+#subset all-time top flight
+topflight <- subset(england, tier==1) %>%
+  mutate(season = as.factor(paste0(Season, "-", substr(Season+1, 3, 4))))
+
+lapply(unique(topflight$season), function(x) {
+    #subset
+    ss <- subset(topflight, season == x)
+    #get number of games played in final round
+    GP <- n_distinct(ss$home) / 2
+    #summarise
+    ss %>%
+      arrange(Date) %>%
+      tail(GP) %>%
+      summarise(season = as.factor(x), total.goals = sum(totgoal), GP, goals.per.game = total.goals / GP)
+}) %>%
+  plyr::rbind.fill() %>%
+  arrange(-total.goals) %>%
+  head(5)
+```
+
+It stands as the all-time #1 (in terms of both total goals and goals per game), although I guess it would have been a less exciting Match of the Day as this final round of games was spread out over three days. Playing all 10 final fixtures simultaneously was only introduced in the 1994-95 season, making this Sunday the most goals scored in a final matchday.
+
+_____
+
+Let's visualise this data to get a better feel for it, and calculate an average goals per gameweek from the rest of the season to compare each final round of fixtures to. The only fiddly thing is subsetting the final gameweek, as this can be 10 or 11 fixtures depending on the season ([see here](#Footnote 1)). (Code for all the plots can be found [here](**LINK**)).
+
+```{r}
+d2 <- data.frame(
+  #rest of season
+  lapply(unique(EPL$Season), function(x) {
+    #subset
+    ss <- subset(EPL, Season == x)
+    #get number of games played per round
+    gpw <- n_distinct(ss$home) / 2
+    #subset
+    ss %>%
+    arrange(Date) %>%
+    tail(-gpw) %>%
+    summarise(Season = x, rest.goals.mean = mean(totgoal) * gpw)
+  }) %>%
+  plyr::rbind.fill(),
+  
+  #final round of matches
+  lapply(unique(EPL$Season), function(x) {
+    #subset
+    ss <- subset(EPL, Season == x)
+    #get number of games in a gameweek
+    gpw <- n_distinct(ss$home) / 2
+    #subset
+    ss %>%
+    arrange(Date) %>%
+    tail(gpw) %>%
+    summarise(last.goals = sum(totgoal), gpw)
+  }) %>%
+  plyr::rbind.fill()
+) %>%
+#prettify season variable for plotting
+mutate(season = as.factor(paste0(Season, "-", substr(Season+1, 3, 4))))
+```
+
+```{r, echo=FALSE, dpi=300}
+ggplot(d2, aes(x = season, y = rest.goals.mean, group=1)) +
+  geom_line(aes(group=1, colour="Rest of season average")) +
+  geom_point(aes(x = season, y = last.goals, group=1, colour="Last gameweek"), stat='summary', fun.y=sum) +
+  stat_summary(aes(x = season, y = last.goals, group=1, colour="Last gameweek"), fun.y=sum, geom="line") +
+  scale_y_continuous(lim=c(0, 60), expand=c(0,0)) +
+  ylab("Goals in gameweek") +
+  xlab("") +
+  scale_colour_manual(name="", values = c("Rest of season average" = "black", "Last gameweek" = "red")) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle=90, hjust=1),
+        legend.position = "top")
+```
+
+It would be nice to include some confidence intervals around our mean too, to get a better idea of just what constitutes a big-scoring gameweek for that season. The easiest way to do this was to split the season up into gameweeks, and calculate the mean and confidence intervals from that data ([see here](#Footnote 2)).
+
+```{r}
+#add gameweek variable
+d3 <- lapply(unique(EPL$Season), function(x) {
+  #subset by season
+  EPL %>%
+    subset(Season == x) %>%
+    arrange(Date) %>%
+    mutate(gameweek = rep(1:(n() / (n_distinct(home) / 2)), each = n_distinct(home) / 2) )
+}) %>%
+plyr::rbind.fill()
+
+#split into 'last gameweek' and 'rest of season'
+d4 <- data.frame(
+  #last gameweek of season
+  d3 %>%
+    group_by(Season) %>%
+    dplyr::filter(gameweek == max(gameweek)) %>%
+    group_by(Season, gameweek) %>%
+    summarise(matches = n(), goals = sum(totgoal)) %>%
+    group_by(Season) %>%
+    #sum goals and get number of fixtures per gameweek
+    summarise(gpw = unique(matches), last.goals = goals) %>%
+    select(last.goals, gpw),
+
+  #rest of season
+  d3 %>%
+    group_by(Season) %>%
+    dplyr::filter(gameweek != max(gameweek)) %>%
+    group_by(Season, gameweek) %>%
+    #get goals in each gameweek
+    summarise(goals = sum(totgoal)) %>%
+    group_by(Season) %>%
+    #summmary statistics
+    summarise(rest.goals.mean = mean(goals), rest.goals.sd = sd(goals), n.matches = n()) %>%
+    mutate(rest.goals.se = rest.goals.sd / sqrt(n.matches), rest.goals.lower = rest.goals.mean - qt(1 - (0.05 / 2), n.matches - 1) * rest.goals.se, rest.goals.upper = rest.goals.mean + qt(1 - (0.05 / 2), n.matches - 1) * rest.goals.se) %>%
+    select(Season, rest.goals.mean, rest.goals.lower, rest.goals.upper)
+  ) %>%
+  # prettify season variable again
+  mutate(season = as.factor(paste0(Season, "-", substr(Season+1, 3, 4))))
+```
+
+Now we can re-draw the above figure with bands around the mean showing the 95% confidence interval.
+
+```{r, echo=FALSE, dpi=300}
+ggplot(d4, aes(x = season, y = rest.goals.mean, group=1)) +
+  geom_line(aes(group=1, colour="Rest of season average")) +
+  geom_ribbon(aes(ymin = rest.goals.lower, ymax = rest.goals.upper, group=1), alpha=0.5, fill="grey") +
+  geom_point(aes(x = season, y = last.goals, group=1, colour="Last gameweek"), stat='summary', fun.y=sum) +
+  stat_summary(aes(x = season, y = last.goals, group=1, colour="Last gameweek"), fun.y=sum, geom="line") +
+  scale_y_continuous(lim=c(0, 70), expand=c(0,0)) +
+  ylab("Goals per gameweek") +
+  xlab("") +
+  scale_colour_manual(name="", values = c("Rest of season average" = "black", "Last gameweek" = "red")) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle=90, hjust=1),
+        legend.position = "top")
+```
+
+The rest of season average is slightly different in this second version (for this season, it's now a mean of 37 different gameweek means, rather than a simple mean of 370 fixtures), but it seems like an acceptable estimate as it only differs by around 0.01 goals per game from our season-wide mean on average:
+
+```{r}
+mean(abs(d2$rest.goals / d2$gpw) - (d4$rest.goals.mean / d4$gpw))
+```
+
+I like this second figure because total goals seems more intuitive than goals per game, but in the interests of fairness let's plot the normalised goals per game data to account for the 11 games per gameweek in the first three PL seasons. It's pretty much indistinguishable anyway.
+
+```{r, echo=FALSE, dpi=300}
+ggplot(d4, aes(x = season, y = rest.goals.mean / gpw, group=1)) +
+  geom_line(aes(group=1, colour="Rest of season average")) +
+  geom_ribbon(aes(ymin = rest.goals.lower / gpw, ymax = rest.goals.upper / gpw, group=1), alpha=0.5, fill="grey") +
+  geom_point(aes(x = season, y = last.goals / gpw, group=1, colour="Last gameweek"), stat='summary', fun.y=sum) +
+  stat_summary(aes(x = season, y = last.goals / gpw, group=1, colour="Last gameweek"), fun.y=sum, geom="line") +
+  scale_y_continuous(lim=c(0, 5.5), expand=c(0,0)) +
+  ylab("Goals per game") +
+  xlab("") +
+  scale_colour_manual(name="", values = c("Rest of season average" = "black", "Last gameweek" = "red")) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle=90, hjust=1),
+        legend.position = "top")
+```
+
+_____
+
+### Is the final round the highest scoring of the season?
+
+So is it true that the last games of the season are always a goal rout?
+
+```{r}
+nrow(subset(d2, last.goals > rest.goals.mean))
+```
+
+Well, in 20 of the 25 Premier League seasons, the goals per game in the final round has been higher than the average. Although running the above functions across all 118 seasons of our 'topflight' dataframe, the final gameweek was only higher than average 64 times; pretty much what we'd expect by random. Hmmm... Well how much higher are the PL finales?
+
+```{r}
+mean(d2$last.goals / d2$rest.goals.mean)
+```
+
+We usually see around 15% more goals in the last PL gameweek than that season's average gameweek. But how often is the last gameweek the highest scoring gameweek **of the season**?
+
+```{r}
+d3 %>%
+  group_by(Season, gameweek) %>% 
+  summarise(goals = sum(totgoal)) %>%
+  group_by(Season) %>%
+  slice(which.max(goals)) %>%
+  subset( (Season %in% 1992:1994 & gameweek == 42) | (Season %in% 1995:2016 & gameweek == 38) )
+```
+
+Turns out only once: in that wild 1992-93 season finale. It's not usually THE highest scoring, but where does the finale usually rank - 2nd highest, 3rd highest, etc...? Let's have a look:
+
+```{r}
+d3 %>%
+  group_by(Season, gameweek) %>% 
+  summarise(goals = sum(totgoal)) %>%
+  group_by(Season) %>%
+  mutate(rank = dense_rank(desc(goals))) %>%
+  subset( (Season %in% 1992:1994 & gameweek == 42) | (Season %in% 1995:2016 & gameweek == 38) ) %>%
+  select(Season, rank)
+```
+  
+If we take the median (middle) value as an average of these rankings, the final gameweek of the season is usually the **5th** highest-scoring gameweek of the season. So usually not THE most exciting round but better than most.
+
+I'm disappointed by this apparent myth-busting and want **some** statistic to console me by telling me the final round is as exciting as I first suspected. So let's have one final roll of the dice and just straight-up count how many goals have been scored in each of the 38 games weeks starting in 1994-95.
+
+```{r}
+d4 <- subset(d3, ! Season %in% 1992:1994) %>%
+  group_by(Season, gameweek) %>% 
+  summarise(goals = sum(totgoal)) %>%
+  group_by(gameweek) %>%
+  summarise(goals = sum(goals)) %>%
+  arrange(-goals)
+```
+
+There we go! Gameweek 38 has had the most. So together, I guess these stats tell us the season finale isn't always the highest-scoring week of the season, but when it is, it  more goals than any other gameweek.
+
+I'm so happy to confirm my initial bias in some way that I'll plot the data even though it doesn't really need to be.
+
+```{r, echo=FALSE, dpi=300}
+ggplot(d4, aes(x = gameweek, y = goals)) +
+  geom_point() +
+  geom_line() +
+  ylab("Total goals")
+```
+
+_____
+
+That's it for this post. I'm still planning a short series of posts on 'Robin Hood' teams soon, but my next one will be a shorter one looking at most goals scored in a single day, a.k.a. the best Match Of The Day ever.
+
+_____
+
+### Footnote 1
+
+There are unexpected anomalies that pop up when trying to manipulate any data. The one I didn't expect in this data was when trying to get the number of games played in each gameweek, usually 10 or 11 depending on whether there were 20 or 22 teams in the league at the time. But then there was the bloody 1987-88 season, in which there were 21 teams in the league! I never knew this as it was before my time, but the First Division went through a bit of an awkward transition before reaching its modern 20-team form in 1995-96 season. The Football League decided to reduce the number of teams from 22 to 20 in the mid-80s, but did this over two seasons rather than in one fell swoop. A quirk of this transition was a relegation play-off at the end of 1987-88 season, which saw Chelsea as the first and only team to have been relegated from the top-flight through a play-off.
+
+I wanted to see how they handled the fixture nightmare presented by having an odd-number of teams, and judging by engsoccerdata's results archive, it seems the answer was badly. It looks bizzarely like Luton Town had to bear the brunt of this awkward season by playing 4 games in the space of 9 days - 2 of which being back-to-back games against Nottingham Forest:
+
+```{r}
+topflight %>% 
+  arrange(Date) %>% 
+  subset(Season==1987) %>% 
+  tail(11) %>%
+  select(Date, home, visitor, FT)
+```
+
+But surely this can't be true? I can't find anything else online to confirm or refute this so if anyone has any information I'd love to know if this is true or whether this data needs correcting!
+
+_____
+
+### Footnote 2
+
+Spitting the season into gameweeks was more troublesome than it first seemed due to rescheduled fixtures - for instance, one team's 32nd game might take place in the same week as another team's 33rd game. So I took some liberty by ordering each season's results by date and splitting these results into an equal number of chunks (i.e. the number of gameweeks). This simplified method might mean that some 10 fixture chunks contain two games by one team and exclude another team, but it'll do for giving us some rough confidence intervals.

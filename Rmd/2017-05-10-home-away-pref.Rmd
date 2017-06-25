@@ -1,0 +1,416 @@
+---
+layout: post
+title: Home advantage and wanderlust
+subtitle: Home vs. away fixture preferences in the Premier League
+author: "Joe Gallagher"
+date: "`r Sys.Date()`"
+tags: [R, soccer]
+output: 
+  md_document:
+    variant: markdown_github
+    preserve_yaml: true
+bigimg: /img/home-advantage.jpg
+---
+
+<!-- javascript to hide / show R code used to generate plot --> 
+<script language="javascript"> 
+function toggle(num) {
+var ele = document.getElementById("toggleText" + num);
+var text = document.getElementById("displayText" + num);
+if(ele.style.display == "block") {
+ele.style.display = "none";
+text.innerHTML = "show";
+}
+else {
+ele.style.display = "block";
+text.innerHTML = "hide";
+}
+} 
+</script>
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+When Burnley got beat 3-1 by Everton at Goodison Park on the 15th April, 33 games into their Premier League season, they had gained only 4 points out of a possible 51 from their away fixtures. However, during this time they'd also managed to accrue 32 points out of a possible 48 at Turf Moor; if the league table were based upon only home fixtures, they'd be in a highly impressive 6th place. But they were in 14th position in the real world, and would be rock bottom of the opposite hypothetical league which counted only away fixtures.
+
+Newspapers seem to love rattling out stats like these but they're cherry-picking. Why 33 games? What if Burnley won their next two home games and lost their next away game - these figures would be even more mind-blowing. What if they started winning away games and the pattern goes cold? Stats can be manipulated to fit any narrative a reporter wants to give - and this is especially true in football reporting - from 'Fortress Turf Moor' to 'Poor travellers Burnley destined for relegation'.
+
+With just two games to go, Burnley are all but mathematically safe from relegation, but I wanted to look at the data to see whether they managed to cure their homesickness and how their home preference measured up to previous records. And whilst we're here, which teams, if any, have a wanderlust and pick up more of their points from away fixtures?
+
+_____
+
+Let's fire up R. I've used the package `engsoccerdata` which includes databases of historical results from English (and European) football leagues and several built-in functions for analysing its data.
+
+```{r message=FALSE}
+devtools::install_github("jalapic/engsoccerdata") #most recent build
+require(engsoccerdata)
+require(dplyr)
+require(ggplot2)
+```
+
+First, we need to update the `engsoccerdata` database with results from the current season using `england_current()` function and subset the dates as we're only interested in the PL era for this post (1992-93 - 2016-17).
+
+```{r}
+EPL <- rbind(england, england_current()) %>%
+subset(tier == 1 & Season %in% 1992:2016)
+```
+
+Have a quick look to make sure it's up to date.
+```{r}
+tail(EPL, 5)
+```
+
+Next I've created a custom function, `maketable_ha()`, to make league tables for each PL season: one using only home fixtures for each team and another using only away fixtures.
+
+```{r}
+maketable_ha <- function(df=NULL, Season=NULL, tier=NULL, pts=3, type = c("both", "home", "away")) {
+
+  GA<-GF<-ga<-gf<-gd<-GD<-D<-L<-W<-Pts<-.<-Date<-home<-team<-visitor<-hgoal<-opp<-vgoal<-goaldif <-FT<-division<-result<-maxgoal<-mingoal<-absgoaldif<-NULL
+
+  #subset by season and tier, if applicable
+  if(!is.null(Season) & is.null(tier)) {
+	dfx <- df[(df$Season == Season), ]
+  } else if(is.null(Season) & !is.null(tier)) {
+	dfx <- df[(df$tier == tier), ]
+  } else if(!is.null(Season) & !is.null(tier)) {
+	dfx <- df[(df$Season == Season & df$tier == tier), ]
+  } else {
+	dfx <- df
+  }
+
+  #msubset only home or away fixtures, if applicable
+  if(match.arg(type)=="home") {
+	temp <- select(dfx, team=home, opp=visitor, GF=hgoal, GA=vgoal)
+  } else if(match.arg(type)=="away") {
+	temp <- select(dfx, team=visitor, opp=home, GF=vgoal, GA=hgoal)
+  } else if(match.arg(type)=="both") {
+	temp <-rbind(
+        select(dfx, team=home, opp=visitor, GF=hgoal, GA=vgoal),
+        select(dfx, team=visitor, opp=home, GF=vgoal, GA=hgoal)
+    )
+  }
+	
+  #make table
+  table <- temp %>%
+    mutate(GD = GF-GA) %>%
+    group_by(team) %>%
+    summarise(GP = sum(GD<=100),
+              W = sum(GD>0),
+              D = sum(GD==0),
+              L = sum(GD<0),
+              gf = sum(GF),
+              ga = sum(GA),
+              gd = sum(GD)
+    ) %>%
+    mutate(Pts = (W*pts) + D) %>%
+    arrange(-Pts, -gd, -gf) %>%
+    mutate(Pos = rownames(.)) %>%
+    as.data.frame()
+	
+	table <- arrange(table, -Pts, -gd, -gf)
+
+  return(table)
+  
+}
+```
+
+## Home points ratio (HPR)
+We'll apply the `maketable_ha()` function to calculate a 'home points ratio', `HPR`: the proportion of total points that were gained at home by each team in each season (1.0 = all of a team's points for the season were gained at home; 0.0 = no points gained at home).
+```{r}
+dd <- lapply(unique(EPL$Season), function(x) {
+  
+  #league tables for home fixtures
+  home <- maketable_ha(EPL, Season = x, tier = 1, type="home") %>%
+    mutate(Hpts = Pts, GPH = GP)
+  #league tables for away fixtures
+  away <- maketable_ha(EPL, Season = x, tier = 1, type="away") %>%
+    mutate(Apts = Pts, GPA = GP)
+  #combined (real) league table
+  both <- maketable_ha(EPL, Season = x, tier = 1, type="both") %>%
+    mutate(real_pos = Pos)
+  
+  #merge together
+  plyr::join_all(list(home, away, both), by = "team", type = 'full') %>%
+    mutate(Season = x, GP = GPH + GPA, Pos = real_pos) %>%
+    select(Season, team, GP, GPH, Hpts, GPA, Apts, Pos) %>%
+    mutate(HPR = Hpts / (Hpts + Apts) ) %>%
+    arrange(HPR)
+} ) %>%
+#collapse this list to a dataframe
+plyr::rbind.fill() %>%
+#order by ascending home points ratio
+arrange(HPR)
+
+#prettify the season variable (e.g. 2016 -> 2016/17)
+dd$season <- as.factor(paste0(dd$Season, "-", substr(dd$Season+1, 3, 4)))
+```
+
+Let's have a quick look at either end of this dataframe.
+```{r}
+dd %>% select(season, team, GP, Hpts, Apts, HPR) %>% head
+
+dd %>% select(season, team, GP, Hpts, Apts, HPR) %>% tail
+```
+
+Interestingly, Burnley have the largest home points ratio, but not from this season; they gained only 4 out of 30 points (87%) away from home in the 09/10 season away. Nevertheless, this season's Burnley also clock in at 5th place with 83% of points gained at home. Crystal Palace have the lowest HPR by quite some margin, gaining only 33% total points from home fixtures during the 97/98 season. As expected, our PL average shows a slight preference for home fixtures overall, with teams picking up 61% of their total points at home on average.
+
+We can visualise this data by plotting the 10 largest vs. the 10 smallest HPRs and comparing them against a PL average (shown in grey). (I've presented HPR as a percentage as it seems more intuitive, and normalised the bars relative to 50% as this is our null hypothesis, i.e. no home or away preference.)
+
+<!-- html to toggle R code for plot --> 
+  <a id="displayText" href="javascript:toggle(1);">Click here to show code used to generate plot.</a>
+  <div id="toggleText1" style="display: none">
+```{r}
+#append season to team name
+dd$x <- paste0(dd$team, " (", dd$season, ")")
+
+#convert ratio to percentage
+dd$pc <- dd$HPR * 100 - 50
+
+#select 10 top, 10 bottom, and create PL average
+ss <- select(dd, x, pc)
+ss <- rbind(head(ss, 10), data.frame(
+	x = "(PL average)",
+	pc = mean(ss$pc)
+	),
+	tail(ss, 10) )
+
+#colours for plotting (green favour home fixtures, red favour away fixtures)
+ss$clr <- as.factor(c(rep(1, 10), 2, rep(3, 10) ))
+
+#plot
+gp1 <- ggplot(ss, aes(x = reorder(x, pc), y = pc, fill=clr) ) + 
+	geom_bar(stat="identity") +
+	coord_flip() +
+  geom_text(aes(x=x, y=2, label=x), hjust=0, size=4, fontface = "bold") +
+  xlab("") +
+  ylab("Home points / total points (%)") +
+  scale_y_continuous(limits=c(-26,51), breaks=c(-25, 0, 25, 50), labels=c(25, 50, 75, 100), expand=c(0,0) ) +
+  scale_fill_manual(values=c("#9999CC", "grey70", "#66CC99")) +
+  theme(
+    axis.title.y = element_blank(),
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    axis.line.x = element_line(colour = "black"),
+    axis.title.x = element_text(size=14, colour = "black"),
+    axis.text.x = element_text(size=14, colour = "black"),
+	  panel.grid.major.y = element_blank(),
+	  legend.position = "none"
+  )
+```
+  </div>
+  
+```{r echo=FALSE}
+gp1
+```
+
+Out of curiosity, here's the same plot but for the top flight across **all** seasons (1888 - present; using 3 points for a win for all seasons).
+
+<!-- html to toggle R code for plot --> 
+  <a id="displayText" href="javascript:toggle(2);">Click here to show code used to generate plot.</a>
+  <div id="toggleText2" style="display: none">
+```{r}
+topflight <- rbind(england, england_current()) %>%
+subset(tier == 1)
+
+dd2 <- lapply(unique(topflight$Season), function(x) {
+  
+  #league tables for home fixtures
+	home <- maketable_ha(topflight, Season = x, tier = 1, type="home") %>%
+		mutate(Hpts = Pts)
+	#league tables for away fixtures
+	away <- maketable_ha(topflight, Season = x, tier = 1, type="away") %>%
+		mutate(Apts = Pts)
+
+	#merge together
+	merge(home, away, by="team") %>%
+		mutate(Season = x, GP = GP.x + GP.y) %>%
+		select(Season, team, GP, Hpts, Apts) %>%
+		mutate(HPR = Hpts / (Hpts + Apts) ) %>%
+		arrange(HPR)
+} ) %>%
+#collapse this list to a dataframe
+plyr::rbind.fill() %>%
+#order by ascending home points ratio
+arrange(HPR)
+
+#prettify the season variable (e.g. 2016 -> 2016/17)
+dd2$season <- as.factor(paste0(dd2$Season, "-", substr(dd2$Season+1, 3, 4)))
+
+#append season to team name
+dd2$x <- paste0(dd2$team, " (", dd2$season, ")")
+#convert ratio to percentage
+dd2$pc <- dd2$HPR * 100 - 50
+#select 10 top, 10 bottom, and create PL average
+ss2 <- select(dd2, x, pc)
+ss2 <- rbind(head(ss2, 10), data.frame(
+	x = "(Top flight average)",
+	pc = mean(ss2$pc)
+	),
+	tail(ss2, 10) )
+
+#colours for plotting (green favour home fixtures, red favour away fixtures)
+ss2$clr <- as.factor(c(rep(1, 10), 2, rep(3, 10) ))
+
+#plot
+gp2 <- ggplot(ss2, aes(x = reorder(x, pc), y = pc, fill=clr) ) + 
+	geom_bar(stat="identity") +
+	coord_flip() +
+  geom_text(aes(x=x, y=2, label=x), hjust=0, size=4, fontface = "bold") +
+  xlab("") +
+  ylab("Home points / total points (%)") +
+  scale_y_continuous(limits=c(-26,51), breaks=c(-25, 0, 25, 50), labels=c(25, 50, 75, 100), expand=c(0,0) ) +
+  scale_fill_manual(values=c("#9999CC", "grey70", "#66CC99")) +
+  theme(
+    axis.title.y = element_blank(),
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    axis.line.x = element_line(colour = "black"),
+    axis.title.x = element_text(size=14, colour = "black"),
+    axis.text.x = element_text(size=14, colour = "black"),
+	  panel.grid.major.y = element_blank(),
+	  legend.position = "none"
+  )
+```
+  </div>
+  
+```{r echo=FALSE}
+gp2
+```
+
+## HPR: team averages
+If we pool the data from all seasons we can find out the overall home / away preferences for all past and current PL teams.
+```{r}
+dd3 <- dd %>% 
+group_by(team) %>%
+summarise(HPR = mean(HPR), GP = sum(GP)) %>%
+arrange(HPR)
+
+dd3 %>% tbl_df %>% print(n = nrow(.))
+```
+
+Interesting to see that any individual season variation in HPR is eliminated and now all teams show at least some preference for home fixtures. Nevertheless, Crystal Palace again show the lowest level of home bias (51% of points at home) and Burnley the most (76%), although Burnley have far fewer games under their belt and this could be expected to revert to a lower mean.
+
+_____
+
+## Points per game (ppg): home and away
+One other thing we might be interested in: the absolute number of points gained at home and away, instead of their relative ratios - total points is the only statistic that matters in the end after all. To this we'll calculate points per game (ppg) for both home (`ppg_home`) and away (`ppg_away`) fixtures.
+
+First let's look at each individual each season:
+```{r}
+dd4 <- dd %>% 
+  mutate(ppg_home = Hpts/GPH, ppg_away = Apts/GPA) %>%
+  select(season, team, GP, Pos, HPR, ppg_home, ppg_away) %>%
+  arrange(desc(ppg_away))
+
+#group by league finish: top 4, relegated, or 5th - 17th 
+dd4$Pos <- as.numeric(dd4$Pos)
+dd4$col <- ifelse(dd4$Pos >= 18, "rel", ifelse(dd4$Pos <=4, "top", "mid"))
+dd4$col <- factor(dd4$col, levels = c("top", "mid", "rel")) #reorder for plotting
+
+rbind(head(dd4), tail(dd4))
+```
+
+<!-- html to toggle R code for plot --> 
+  <a id="displayText" href="javascript:toggle(3);">Click here to show code used to generate plot.</a>
+  <div id="toggleText3" style="display: none">
+```{r}
+gp3 <- ggplot(dd4, aes(x = ppg_home, y = HPR, colour=Pos) ) + 
+  geom_point() +
+  ylab("Home points ratio") +
+  xlab("Home points per game") +
+  scale_colour_continuous(trans = 'reverse', breaks = c(20, 1)) +
+  theme(legend.position="top")
+
+gp4 <- ggplot(dd4, aes(x = ppg_away, y = HPR, colour=Pos) ) + 
+  geom_point() +
+  ylab("Home points ratio") +
+  xlab("Away points per game") +
+  scale_colour_continuous(trans = 'reverse', breaks = c(20, 1)) +
+  theme(legend.position="top")
+
+gp5 <- cowplot::plot_grid(gp3, gp4)
+```
+  </div>
+  
+```{r echo=FALSE}
+gp5
+```
+
+So teams who finish the season with a higher HPR seem to finish lower down the table; more of a case of faring poorly away than being excellent at home. Meanwhile, those near the top tend to have a more equal home / away points ratio.
+
+Here's the same figures with three colour groups get a better feel for finishing position:
+
+<!-- html to toggle R code for plot --> 
+  <a id="displayText" href="javascript:toggle(4);">Click here to show code used to generate plot.</a>
+  <div id="toggleText4" style="display: none">
+```{r}
+gp6 <- ggplot(dd4, aes(x = ppg_home, y = HPR, colour=col) ) + 
+  geom_point() +
+  ylab("Home points ratio") +
+  xlab("Home points per game") +
+  scale_colour_manual(breaks=c("top", "mid", "rel"), labels=c("Top 4", "5th - 17th", "Relegated"), values=c("green", "blue", "red")) +
+  guides(colour=guide_legend(title=NULL)) +
+  theme(legend.position="top")
+
+gp7 <- ggplot(dd4, aes(x = ppg_away, y = HPR, colour=col) ) + 
+  geom_point() +
+  ylab("Home points ratio") +
+  xlab("Away points per game") +
+  scale_colour_manual(breaks=c("top", "mid", "rel"), labels=c("Top 4", "5th - 17th", "Relegated"), values=c("green", "blue", "red")) +
+  guides(colour=guide_legend(title=NULL)) +
+  theme(legend.position="top")
+
+gp8 <- cowplot::plot_grid(gp6, gp7)
+```
+  </div>
+  
+```{r echo=FALSE}
+gp8
+```
+
+So to win the league you've got to pick up high points per game home **and** away, right? Well, let's look at the records for every PL winner:
+
+```{r}
+dd4[dd4$Pos==1,] %>% arrange(HPR)
+```
+
+Manchester United won it in 2010-11 with only 1.32 ppg away from home. And on the flip side, Arsenal became champions in 2001-02 with a higher ppg from away fixtures (2.47) than home (2.10) (although both of those ppg are impressive).
+
+## HPR vs. ppg_home and ppg_away
+Finally, let's pool the data for `ppg_home` and `ppg_away` as we did before to see each team's overall record in the PL.
+```{r}
+dd5 <- dd %>% 
+  group_by(team) %>%
+  summarise(ppg_home = sum(Hpts) / sum(GPH), ppg_away = sum(Apts) / sum(GPA)) %>%
+  mutate(HPR = ppg_home / (ppg_home + ppg_away)) %>%
+  arrange(desc(ppg_away))
+
+rbind(head(dd5), tail(dd5))
+```
+
+If we plot home ppg against away ppg and fill according to home points ratio we can see that teams with the highest HPR tend to have the lowest number of points per game. This seems to support the idea that a high HPR is caused more by having away jitters than a home fortress.
+
+<!-- html to toggle R code for plot --> 
+  <a id="displayText" href="javascript:toggle(5);">Click here to show code used to generate plot.</a>
+  <div id="toggleText5" style="display: none">
+```{r}
+gp9 <- ggplot(dd5, aes(x = ppg_home, y = ppg_away, col=HPR) ) + 
+  geom_point() +
+  xlab("Home points per game") +
+  ylab("Away points per game") +
+  ggrepel::geom_text_repel(aes(label = team), size = 3) +
+  scale_colour_continuous(name="Home points ratio")
+```
+  </div>
+  
+```{r echo=FALSE}
+gp9
+```
+
+_____
+
+## In conclusion...
+I'm not sure how useful this information is (if at all), but I find exploring data that interests me is always a good way to get to grips with new methods or technologies; this was my first time piping with `magrittr` and my first time using `knitr` and rmarkdown. 
+
+Popular sports like football tend to generate a massive amount data but their interpretation by the mainstream media often leaves a lot to be desired. Hopefully this post shows how useful open-source databases and tools like `engsoccerdata` can make it easy to conduct a more rigorous analysis!
