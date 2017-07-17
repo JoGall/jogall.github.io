@@ -3,6 +3,8 @@ layout: page
 title: Curriculum Vitae
 ---
 
+I'm a evolutionary biologist who loves data of all kinds. Finished my [Ph.D. on insect immunology](http://etheses.whiterose.ac.uk/12275/) in 2016 and now looking to transition into a career in data science. I'm a massive football (soccer) nerd and like to test out new methods for analysis and visualisation using football data (see my blog posts).
+
 **Contact**: joedgallagher[at]gmail.com
 
 **Location**: Liverpool, UK
