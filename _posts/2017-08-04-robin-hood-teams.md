@@ -335,7 +335,7 @@ ggplot(hoodability, aes(x = top_ppg, y = bottom_ppg) ) +
 
 ------------------------------------------------------------------------
 
-So we've looked at individual seasons but who is the Premier League's all-time greatest Robin Hood, i.e. the team with the highest average 'Hoodability' score? A cursory look reveals it's Blackpool -- in fact, they're THE only Robin Hood team:
+So we've looked at individual seasons but who is the Premier League's all-time greatest Robin Hood, i.e. the team with the highest average 'Hoodability' score? A cursory look reveals it's Blackpool -- in fact, they're THE only true Robin Hood team:
 
 <!-- html to show R code --> 
 <a id="displayText" href="javascript:toggle(9);" markdown="1">
@@ -485,7 +485,7 @@ summary(mod1)
     ## Multiple R-squared:  0.01096,    Adjusted R-squared:  0.008997 
     ## F-statistic: 5.585 on 1 and 504 DF,  p-value: 0.0185
 
-The size of this effect though is very small: the slope of the curve is only 0.009, meaning that for every ~0.01 ppg a team 'donates to charity' (gives away to bottom teams instead of gives away to top teams), a team can expect to finish one position lower in the league. However, an [r-squared](https://en.wikipedia.org/wiki/Coefficient_of_determination) of &lt;0.01 suggests that the amount of variation in performance explained by 'Hoodability' is almost meaningless.
+The size of this effect though is very small: the slope of the curve is only 0.009, meaning that for every \~0.01 ppg a team 'donates to charity' (gives away to bottom teams instead of gives away to top teams), a team can expect to finish one position lower in the league. However, an [r-squared](https://en.wikipedia.org/wiki/Coefficient_of_determination) of &lt;0.01 suggests that the amount of variation in performance explained by 'Hoodability' is almost meaningless.
 
 ------------------------------------------------------------------------
 
