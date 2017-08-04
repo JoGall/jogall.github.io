@@ -4,12 +4,14 @@ title: Defining 'Robin Hood teams' and measuring 'Hoodability':
 subtitle: Teams that take points from the top of the league and give them away to the bottom
 author: "Joe Gallagher"
 date: "2017-08-04"
+tags: [R, soccer]
 output: 
   md_document:
     variant: markdown_github
     preserve_yaml: true
+always_allow_html: yes
 bigimg: /img/robin-hood.png
-share-img: /img/robin-hood.jpg
+share-img: /img/robin-hood.png
 ---
 
 <!--- R configuration and post-specific webpage code --->
