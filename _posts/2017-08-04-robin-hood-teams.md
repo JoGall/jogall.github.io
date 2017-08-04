@@ -11,7 +11,7 @@ output:
     preserve_yaml: true
 always_allow_html: yes
 bigimg: /img/robin-hood.png
-share-img: /img/robin-hood.png
+share-img: "https://github.com/JoGall/jogall.github.io/blob/master/img/robin-hood.png"
 ---
 
 <!--- R configuration and post-specific webpage code --->
