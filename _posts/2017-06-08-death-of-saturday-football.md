@@ -10,7 +10,7 @@ output:
     preserve_yaml: true
 always_allow_html: yes
 bigimg: /img/motd.jpg
-share-img: /img/motd.jpg
+share-img: https://jogall.github.io/assets/2017-06-08-death-of-saturday-football_files/unnamed-chunk-20-1.png
 
 ---
 
