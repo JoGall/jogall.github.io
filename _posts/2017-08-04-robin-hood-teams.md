@@ -1,14 +1,14 @@
 ---
 layout: post
-title: Robin Hood teams
-subtitle: Taking points from the top of the league and giving them to the bottom
+title: Defining 'Robin Hood teams' and measuring 'Hoodability':
+subtitle: Teams that take points from the top of the league and give them away to the bottom
 author: "Joe Gallagher"
 date: "2017-08-04"
 output: 
   md_document:
     variant: markdown_github
     preserve_yaml: true
-bigimg: /img/robin-hood.jpg
+bigimg: /img/robin-hood.png
 share-img: /img/robin-hood.jpg
 ---
 
@@ -44,11 +44,12 @@ Liverpool's 2016-17 season was a bit of a Jekyll & Hyde one. They went unbeaten 
 
 Yet they also suffered 6 league defeats, all against teams finishing 9th or lower in the league: Burnley (16th), Bournemouth (9th), Swansea (15th), Hull (18th), Leicester (12th), and Crystal Palace (14th). This lead to several people dubbing Liverpool the 'Robin Hood' of the football world: taking points from the rich and giving them to the poor.
 
-Nothing more than a throwaway joke maybe, but as a Liverpool fan I couldn't help wonder if there might not be an interesting truth at its heart. Liverpool had a similar season in 2008-09, suffering only two defeats all season and averaging 2.2 ppg against the rest of the season's top 6 (I can't bring myself to not mention double wins over Chelsea and Man Utd which included a 4-1 win at Old Trafford), yet costly dropped points against Wigan, Stoke, Hull, and Fulham saw see them finish 4 points adrift of eventual winners, Manchester United.
+Nothing more than a throwaway joke maybe, but as a Liverpool fan I couldn't help but wonder if there isn't something painfully true at its heart. Liverpool had a similar season in 2008-09, suffering only two defeats all season and averaging 2.2 ppg against the rest of the season's top 6 (I can't bring myself to not mention double wins over Chelsea and Man Utd which included a 4-1 win at Old Trafford), yet costly dropped points against Wigan, Stoke, Hull, and Fulham saw them finish 4 points adrift of eventual winners United.
 
-So the aims of this two-part post are:
-- To develop a metric for identifying 'Robin Hood' teams; we could call it `Robin Hood-ness` but I prefer the Iain Dowie-inspired **`Hoodability`**
-- To test whether Liverpool were really a Robin Hood team this season and whether they consistently show symptoms of Hoodability compared to other teams
+The aims of this two-part post are:
+- To develop a metric for identifying 'Robin Hood' teams; we could call it `Robin Hood-ness` but I prefer the Iain Dowie-approved **`Hoodability`**
+- To test whether Liverpool really were a Robin Hood team this season and whether they consistently show symptoms of Hoodability in previous seasons
+- To find other Robin Hood teams and rank them by their Hoodability
 - To gauge what impact (if any) Hoodabiity has on overall team performance for the season
 
 ------------------------------------------------------------------------
@@ -81,7 +82,7 @@ my_theme <- theme_bw() +
 ```
 </div>
 
-First, let's write the code to make the intra-top 6 table I talked about above to see Liverpool on top with 2 ppg.
+First, let's write the code to make the intra-top 6 table above showing Liverpool on top with 2 ppg.
 
 <!-- html to show R code --> 
 <a id="displayText" href="javascript:toggle(2);" markdown="1">
@@ -158,11 +159,13 @@ bottom6_table
 
 As we suspected, Liverpool were the worst performers against the bottom 6 this season, averaging only 2.08 ppg against Swansea, Burnley, Watford, Hull, Boro, and Sunderland.
 
+------------------------------------------------------------------------
+
 ### Defining 'Hoodability'
 
-The simplest starting point for our `Hoodability` metric that I can think of is to simply compute the difference between ppg against the top 6 (`top6_table`) and ppg against the bottom 6 (`bottom6_table`) for each team. A `Hoodability` &gt; 0 represents true `Robin Hood` teams that redistributed points down the table by gained more points against the top 6 than against the bottom 6.
+The simplest starting point for our 'Hoodability' metric that I can think of is to simply compute the difference between ppg against the top 6 (`top6_table`) and ppg against the bottom 6 (`bottom6_table`) for each team. A 'Hoodability' &gt; 0 represents true `Robin Hood` teams that redistributed points down the table by gained more points against the top 6 than against the bottom 6.
 
-I realise this might not be ideal: we lose potentially important information from recoding a continuous variable into two discrete groups and from ignoring performance against mid-table teams. For these reasons, some form of regression between ppg and relative team position might be more interesting, but I'll come to that idea in the next post.
+(I realise this might not be ideal: we lose potentially important information from recoding a continuous variable into two discrete groups and from ignoring performance against mid-table teams. For these reasons, some form of regression between ppg and relative team position might be more interesting, but I'll come to that idea in the next post.)
 
 <!-- html to show R code --> 
 <a id="displayText" href="javascript:toggle(4);" markdown="1">
@@ -188,7 +191,9 @@ merge(top6_table, bottom6_table, by = "team") %>%
     ## 5   Manchester City       -1.67
     ## 6           Arsenal       -1.68
 
-As expected, Liverpool have the highest `Hoodability` of the top 6 in 2016-17, although a negative value shows they still took marginally more points from the bottom than they did the top. [^1]
+As expected, Liverpool have the highest 'Hoodability' of the top 6 in 2016-17, although a negative value shows they still took marginally more points from the bottom than they did the top. [^1]
+
+------------------------------------------------------------------------
 
 ### Historical 'Hoodability'
 
@@ -240,7 +245,7 @@ hoodability <- lapply(unique(EPL$Season), function(x) {
 ```
 </div>
 
-If we plot these 506 team seasons with 'ppg vs. top 6' on the x-axis and ppg vs bottom 6' on the y-axis below, points below the diagonal line represent teams should were a true Robin Hood that season.
+If we plot these 506 team seasons with `ppg vs. top 6` on the x-axis and `ppg vs bottom 6` on the y-axis below, then teams below the diagonal line `y = x` were a true Robin Hood that season.
 
 <!-- html to show R code --> 
 <a id="displayText" href="javascript:toggle(6);" markdown="1">
@@ -295,9 +300,9 @@ hoodability %>%
 
 ![](/assets/2017-08-04-robin-hood-teams_files/unnamed-chunk-8-1.png)
 
-Most Robin Hoods appear to be teams that weren't having particularly great seasons; all bar two teams gained less than 2 ppg against the top 6. Manchester United in 2002-03 stick out to the right hand side of the plot as the only Robin Hood team to win the Premier League. Chelsea finished 3rd in the 2013-14 season but with a much smaller `Hoodability` score.
+Most Robin Hoods appear to be teams that weren't having particularly great seasons; all bar two teams gained less than 2 ppg against the top 6. Manchester United in 2002-03 stick out to the right hand side of the plot as the only Robin Hood team to win the Premier League. Chelsea finished 3rd in the 2013-14 season but with a much smaller 'Hoodability' score.
 
-Ipswich Town occupy both the \#1 and \#2 positions of our greatest Robin Hood seasons; in 1992-93 they managed an impressive 1.5 ppg against the top 6 teams and just 0.7 ppg against the bottom 6 - an impressive redistribution of points! Meanwhile, Leeds United are the greatest antithesis to our Robin Hood idea with a `Hoodability` score of -2.08 in the 1999-00 season. Let's add these points of interest on our above scatter plot for some context.
+Ipswich Town occupy both the \#1 and \#2 positions of our greatest Robin Hood seasons; in 1992-93 they managed an impressive 1.5 ppg against the top 6 teams and just 0.7 ppg against the bottom 6 - an impressive redistribution of points! Meanwhile, Leeds United are the greatest antithesis to our Robin Hood idea with a 'Hoodability' score of -2.08 in the 1999-00 season. Let's add these points of interest on our above scatter plot for some context.
 
 <!-- html to show R code --> 
 <a id="displayText" href="javascript:toggle(8);" markdown="1">
@@ -330,7 +335,7 @@ ggplot(hoodability, aes(x = top_ppg, y = bottom_ppg) ) +
 
 ------------------------------------------------------------------------
 
-So we've looked at individual seasons but who is the Premier League's all-time greatest Robin Hood, i.e. the team with the highest average `Hoodability` score? A cursory look reveals it's Blackpool -- in fact, they're THE only Robin Hood team:
+So we've looked at individual seasons but who is the Premier League's all-time greatest Robin Hood, i.e. the team with the highest average 'Hoodability' score? A cursory look reveals it's Blackpool -- in fact, they're THE only Robin Hood team:
 
 <!-- html to show R code --> 
 <a id="displayText" href="javascript:toggle(9);" markdown="1">
@@ -430,11 +435,11 @@ Liverpool sit on top of this table of Premier League regulars, suggesting they a
 
 ### Hoodability vs. performance
 
-But is this a problem? Does `Hoodability` have a negative effect on team performance over the season, i.e. their final league position?
+But is this a problem? Does 'Hoodability' have a negative effect on team performance over the season, i.e. final league position?
 
-Obviously losing points is bad for a team's chances of winning the league, but all teams drop at least some points over the course of their campaign -- and one could argue that losing games against lower teams is better than losing them against those near the top. From Liverpool's perspective, if you're going to lose it's better to gift those points to Sunderland than it is to Chelsea.
+Obviously losing points is bad for any team's chances of winning the league, but every team drops _some_ points over the course of their campaign and one could argue that losing games against lower teams is better than losing them against those near the top. From Liverpool's perspective, if you're going to lose a game it's better to gift those points to Sunderland than it is to Chelsea.
 
-If we plot final league position against `Hoodability`, we see a very slight correlation: teams with higher `Hoodability` tend to finish lower in the league.
+If we plot final league position against 'Hoodability', we see a very slight correlation: teams with higher 'Hoodability' tend to finish lower in the league.
 
 <!-- html to show R code --> 
 <a id="displayText" href="javascript:toggle(13);" markdown="1">
@@ -480,16 +485,16 @@ summary(mod1)
     ## Multiple R-squared:  0.01096,    Adjusted R-squared:  0.008997 
     ## F-statistic: 5.585 on 1 and 504 DF,  p-value: 0.0185
 
-The size of this effect though is very small: the slope of the curve is only 0.009, meaning that for every 0.01 ppg a team Robin Hoods (gives away to bottom teams instead of gives away to top teams), a team can expect to finish one position lower in the league. However, an [r-squared](https://en.wikipedia.org/wiki/Coefficient_of_determination) of &lt;0.01 suggests that the amount of variation in performance explained by `Hoodability` is almost meaningless.
+The size of this effect though is very small: the slope of the curve is only 0.009, meaning that for every ~0.01 ppg a team 'donates to charity' (gives away to bottom teams instead of gives away to top teams), a team can expect to finish one position lower in the league. However, an [r-squared](https://en.wikipedia.org/wiki/Coefficient_of_determination) of &lt;0.01 suggests that the amount of variation in performance explained by 'Hoodability' is almost meaningless.
 
 ------------------------------------------------------------------------
 
 ### To be continued...
 
-Nonetheless, there might be something interesting going on here if we dig a little deeper. In part two I'll define a more rigorous `Hoodability` metric that goes further than simply computing the difference in performance against the top 6 vs. the bottom 6 and measures performance against all other teams by their relative position in the league, i.e. how many positions an opponent is above or below that team in the league.
+Nonetheless, there might be something interesting going on here if we dig a little deeper. In part two I'll define a more rigorous 'Hoodability' metric that goes further than simply computing the difference in performance against the top 6 vs. the bottom 6 and measures performance against all other teams by their relative position in the league, i.e. how many positions an opponent is above or below that team in the league.
 
 Stay tuned!
 
 ------------------------------------------------------------------------
 
-[^1]: Perhaps that makes them as much philanthropists as the [actual Robin Hood](http://www.historyextra.com/article/feature/7-myths-about-robin-hood)
+[^1]: Perhaps that makes them as much philanthropists as the [actual Robin Hood](http://www.historyextra.com/article/feature/7-myths-about-robin-hood).
