@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Defining &#34;Robin Hood teams&#34; and measuring &#34;Hoodability&#34;
+title: Defining 'Robin Hood teams' and measuring 'Hoodability'
 subtitle: Teams that take points from the 'top' of the league and give them away to the bottom
 author: "Joe Gallagher"
 date: "2017-08-04"
