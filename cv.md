@@ -67,6 +67,6 @@ Skills
 * Provided **technical training** on laboratory techniques and data analysis to visiting students and members of staff
 * Co-supervised several undergraduate and Masters research projects
 * Active contributor to **outreach** programme 'Discovery' at University of Sheffield, a series of interactive workshops and talks aimed at promoting STEM to schoolchildren (2012-2016)
-* Blog posts ((on this website)[jogall.github.io])
+* (Blog posts)[https://jogall.github.io])
 
 ------------
