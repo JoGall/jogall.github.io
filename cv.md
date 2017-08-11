@@ -34,16 +34,30 @@ Skills
 ---------
 #### Technical skills
 
-* **R:** **statistical analysis** (regression, general linear models, mixed modeling, principal component analysis, etc...); [**machine learning**](https://github.com/JoGall/FantasyPL) (classification, resampling, random forest); analysing [spatiotemporal data](https://github.com/JoGall/simulated-walks) and forecasting time series data; web scraping and text mining
-* **Graphical visualisation** (ggplot) and creation of interactive dashboards and web applications ([**R shiny**](https://jdgallagher.shinyapps.io/seasonStats/), [**plotly**](https://plot.ly/~jogal), Tableau)
+* **R:**
+    * **statistical analysis** (regression, general linear models, mixed modeling, principal component analysis, etc...)
+    * [**machine learning**](https://github.com/JoGall/FantasyPL) (classification, resampling, random forest)
+    * [**quantitative financial modelling**](https://github.com/JoGall/quantdb) (RSI, MACD, percentile rank)
+    * analysing [spatiotemporal data](e.g. [here](https://github.com/JoGall/simulated-walks) and [here](https://github.com/JoGall/rubitrail)) and forecasting time series data
+    * web scraping and text mining
+    * connection to databases using a DBI-compliant interface
+* **Graphical visualisation**
+    * ggplot (e.g. [blog](https://jogall.github.io/2017-05-24-final-gameweek-extravaganzas/) [posts](https://jogall.github.io/2017-08-04-robin-hood-teams/))
+    * interactive dashboards and web applications
+        * [**R shiny**](https://jdgallagher.shinyapps.io/seasonStats/)
+        * [**plotly**](https://plot.ly/~jogal)
+        * Basic Tableau
+* **SQL**
+    * database design, complex queries and scripting in [**PostgreSQL**](https://github.com/JoGall/quantdb)
+    * database administration (pgAdmin, phpMyAdmin)
+    * data warehousing and query parallelisation using the MPP database server **Pivotal Greenplum**
 * **Microsoft Excel:** pivot tables, VLOOKUP, macros
-* **C++** automated image analysis ([here](https://github.com/JoGall/nylon-encapsulation), [here](https://github.com/JoGall/ladybird-spots) and [here](https://github.com/JoGall/cuticular-melanisation)); motion tracking software to quantify insect locomotion and behaviour ([here](https://github.com/JoGall/rubitrail))
-* **Web development:** HTML5, CSS3, JavaScript, PHP
-* Database design and complex queries with [**PostgreSQL**](https://github.com/JoGall/quantdb); database administration using **pgAdmin III**
-* **Data warehousing** using the massively parallel processing (MPP) database server **Pivotal Greenplum**
-* **Web scraping** and **data / text mining** (JSON/XML)
+* **C++**
+    * automated image analysis (e.g. [here](https://github.com/JoGall/nylon-encapsulation), [here](https://github.com/JoGall/ladybird-spots) and [here](https://github.com/JoGall/cuticular-melanisation))
+    * [motion tracking software](https://sourceforge.net/projects/ubitrail/) to quantify insect locomotion and behaviour
 * [**Shell** scripting](https://github.com/JoGall/quantdb) on Linux OS
-
+* **Web development:** HTML5, CSS3, JavaScript, PHP
+* **Web scraping** and **data / text mining** (JSON/XML)
 
 
 #### Communication, teaching, and teamwork skills
@@ -53,5 +67,6 @@ Skills
 * Provided **technical training** on laboratory techniques and data analysis to visiting students and members of staff
 * Co-supervised several undergraduate and Masters research projects
 * Active contributor to **outreach** programme 'Discovery' at University of Sheffield, a series of interactive workshops and talks aimed at promoting STEM to schoolchildren (2012-2016)
+* Blog posts ((on this website)[jogall.github.io])
 
 ------------
