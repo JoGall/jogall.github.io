@@ -3,9 +3,9 @@ layout: page
 title: About me / CV
 ---
 
-I'm a evolutionary biologist who loves data of all kinds. Finished my [Ph.D. on insect immunology](http://etheses.whiterose.ac.uk/12275/) in 2016 and now looking to transition into a career in data science. I'm a massive football (soccer) nerd and like to test out new methods for analysis and visualisation using football data (see my [blog posts](https://jogall.github.io/2017-05-12-home-away-pref/)).
+I'm a evolutionary biologist who loves data of all kinds. Finished my [Ph.D. on insect immunology](http://etheses.whiterose.ac.uk/12275/) in 2016 and now embarking on a career in data science. I'm a massive football (soccer) nerd and like to learn new methods of analysis and visualisation using football data (see my [blog posts](https://jogall.github.io/2017-05-12-home-away-pref/)).
 
-**Contact**: joedgallagher[at]gmail.com
+**Contact**: joedgallagher[at]gmail[dot]com
 
 **Location**: Liverpool, UK
 
@@ -35,12 +35,13 @@ Skills
 #### Technical skills
 
 * **R:**
-    * **statistical analysis** (regression, general linear models, mixed modeling, principal component analysis, etc...)
+    * **statistical analysis** (regression, general linear models, mixed modeling, principal component analysis, bootstrapping)
     * [**machine learning**](https://github.com/JoGall/FantasyPL) (classification, resampling, random forest)
     * [**quantitative financial modelling**](https://github.com/JoGall/quantdb) (RSI, MACD, percentile rank)
     * analysing [spatiotemporal data](e.g. [here](https://github.com/JoGall/simulated-walks) and [here](https://github.com/JoGall/rubitrail)) and forecasting time series data
-    * web scraping and text mining
-    * connection to databases using a DBI-compliant interface
+    * **Web scraping** (JSON / XML) and data munging
+    * Text mining and sentiment analysis
+    * database connection using DBI-compliant interfaces (RPostgreSQL, PivotalR)
 * **Graphical visualisation**
     * ggplot (e.g. [blog](https://jogall.github.io/2017-05-24-final-gameweek-extravaganzas/) [posts](https://jogall.github.io/2017-08-04-robin-hood-teams/))
     * interactive dashboards and web applications
@@ -48,16 +49,19 @@ Skills
         * [**plotly**](https://plot.ly/~jogal)
         * Basic Tableau
 * **SQL**
-    * database design, complex queries and scripting in [**PostgreSQL**](https://github.com/JoGall/quantdb)
-    * database administration (pgAdmin, phpMyAdmin)
+    * database design, complex queries, and scripting in [**PostgreSQL**](https://github.com/JoGall/quantdb)
     * data warehousing and query parallelisation using the MPP database server **Pivotal Greenplum**
-* **Microsoft Excel:** pivot tables, VLOOKUP, macros
+    * database administration (pgAdmin, phpMyAdmin)
+* **Microsoft Excel**
+    * advanced formulae (e.g. VLOOKUP, SUMIF), pivot tables, conditional formatting
 * **C++**
     * automated image analysis (e.g. [here](https://github.com/JoGall/nylon-encapsulation), [here](https://github.com/JoGall/ladybird-spots) and [here](https://github.com/JoGall/cuticular-melanisation))
-    * [motion tracking software](https://sourceforge.net/projects/ubitrail/) to quantify insect locomotion and behaviour
-* [**Shell** scripting](https://github.com/JoGall/quantdb) on Linux OS
-* **Web development:** HTML5, CSS3, JavaScript, PHP
-* **Web scraping** and **data / text mining** (JSON/XML)
+    * [motion tracking](https://sourceforge.net/projects/ubitrail/) to quantify insect locomotion and behaviour
+* [**Shell scripting**](https://github.com/JoGall/quantdb) on Linux OS
+* **Web development**
+    * HTML5, CSS3, JavaScript
+    * Dynamic website design using CMS (WordPress, Joomla)
+    * Static site generation (Jekyll)
 
 
 #### Communication, teaching, and teamwork skills
@@ -67,6 +71,6 @@ Skills
 * Provided **technical training** on laboratory techniques and data analysis to visiting students and members of staff
 * Co-supervised several undergraduate and Masters research projects
 * Active contributor to **outreach** programme 'Discovery' at University of Sheffield, a series of interactive workshops and talks aimed at promoting STEM to schoolchildren (2012-2016)
-* (Blog posts)[https://jogall.github.io])
+* [Blog posts](https://jogall.github.io)
 
 ------------
