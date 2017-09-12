@@ -22,7 +22,7 @@ description: My GitHub user page
 # List of links in the navigation bar
 navbar-links:
   Home: "index"
-  Blog: "tags"
+  Categories: "categories"
   CV: "cv"
   GitHub: "https://github.com/JoGall"
 
