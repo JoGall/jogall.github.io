@@ -1,30 +1,30 @@
-.buttons {
-  font-size: 1.1em;
+.list-filters {
+  font-size: 1.2em
   font-weight: bold;
   margin: 1em auto;
   text-align: center;
 }
 
-.buttons .btn  {
+.list-filters .list-filter  {
   text-decoration: none !important;
   margin-right: 0.3em;
   border: 2px solid #D00027;
   border-radius: 20px;
   color: #D00027;
   padding: 0.5em 1.2em;
+  text-transform: uppercase;
   cursor: pointer;
   display: inline-block;
-  text-transform: uppercase;
 }
 
-.buttons .btn.filter-selected,
-.buttons .btn:hover {
+.list-filters .list-filter.filter-selected,
+.list-filters .list-filter:hover {
   color: #fff;
   background: #D00027;
 }
 
 @media only screen and (max-width: 550px) {
-  .buttons .btn {
+  .list-filters .list-filter {
     font-size: 16px;
     margin-right: 0;
     margin-bottom: -1px;
