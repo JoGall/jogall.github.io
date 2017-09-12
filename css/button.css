@@ -1,0 +1,35 @@
+.btn {
+  box-sizing: border-box;
+  appearance: none;
+  background: {
+    image: linear-gradient(to bottom, transparent 50%, #e74c3c 50%);
+    position: 0% 0%;
+    size: 210%;
+  }
+  border-color: #e74c3c;
+  color: #e74c3c;
+  border-radius: 3em;
+  cursor: pointer;
+  display: flex;
+  align-self: center;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  margin: 20px;
+  padding: 1.2em 2.8em;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+
+  &:hover {
+    color: #e74c3c;
+    background-position: 0 100%;
+  };
+  &:focus {
+    color: #fff;
+    outline: 0;
+  };
+  transition: background 150ms ease-in-out, color 150ms ease-in-out;
+}
