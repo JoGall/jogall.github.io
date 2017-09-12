@@ -1,58 +1,77 @@
-.button {
-  box-sizing: border-box;
-  appearance: none;
-  background-color: transparent;
-  border: 2px solid #e74c3c;
-  border-radius: 0.6em;
-  color: #e74c3c;
-  cursor: pointer;
+/*div {
+  text-align:centre;
+  margin: 3rem auto;
+  max-width: 660px;
+  width: 100%;
   display: flex;
-  align-self: center;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1;
-  margin: 20px;
-  padding: 1.2em 2.8em;
-  text-decoration: none;
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: 700;
+  justify-content: center;
+}*/
 
-  &:hover,
-  &:focus {
-    color: #fff;
-    outline: 0;
-  }
+/* GENERAL BUTTON STYLING */
+button,
+button::after {
+  -webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+	transition: all 0.3s;
 }
 
-.fifth {
-  border-color: #e74c3c;
-  // border: 0;
-  border-radius: 0;
-  color: #e74c3c;
+button {
+  background: none;
+  border: 5px solid #D00027;
+  border-radius: 20px;
+  color: #D00027;
+  display: block;
+  font-size: 1.6em;
+  font-weight: bold;
+  margin: 1em auto;
+  padding: 1.2em 2em;
   position: relative;
+  text-transform: uppercase;
+}
+
+button::before,
+button::after {
+  background: #D00027;
+  content: '';
+  position: absolute;
+  z-index: -1;
+}
+
+button:hover {
+  color: #fff;
+}
+
+.unselected {
   overflow: hidden;
-  z-index: 1;
-  transition: color 150ms ease-in-out;
-  
-  &:after {
-    content: '';
-    position: absolute;
-    display: block;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 100%;
-    background: #e74c3c;
-    z-index: -1;
-    transition: width 150ms ease-in-out;
-  }
-  
-  &:hover {
-    color: #fff;
-    &:after {
-      width: 110%;
-    }
-  }
+}
+
+.selected {
+  background: #D00027;
+  border: 5px solid #D00027;
+  border-radius: 20px;
+  color: #FFF;
+  display: block;
+  font-size: 1.6em;
+  font-weight: bold;
+  margin: 1em auto;
+  padding: 1.2em 2em;
+  position: relative;
+  text-transform: uppercase;
+}
+
+.unselected::after {
+  /*background-color: #f00;*/
+  height: 100%;
+  left: -35%;
+  top: 0;
+  transform: skew(50deg);
+  transition-duration: 0.6s;
+  transform-origin: top left;
+  width: 0;
+}
+
+.unselected:hover:after {
+  height: 100%;
+  width: 135%;
 }
