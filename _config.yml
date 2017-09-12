@@ -5,7 +5,7 @@ encoding: utf-8
 
 #GitHub user page (http://username.github.io)::
 url: "http://jogall.github.io"
-baseurl: ""
+baseurl: "/blog"
 
 #GitHub project page:
 #url: "http://username.github.io/projectname"
