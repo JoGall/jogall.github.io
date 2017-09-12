@@ -3,7 +3,7 @@ layout: post
 title: The death of Saturday football?
 subtitle: The effects of declining fixture density on reducing the number of matchday goals in the Premier League
 date: "2017-06-12"
-tags: [R, soccer]
+tags: [football / soccer, R]
 output: 
   md_document:
     variant: markdown_github

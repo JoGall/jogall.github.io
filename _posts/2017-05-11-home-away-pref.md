@@ -3,7 +3,7 @@ layout: post
 title: Home advantages and wanderlust
 subtitle: Home and away preferences in the Premier League
 date: "2017-05-12"
-tags: [R, soccer]
+tags: [football / soccer, R]
 bigimg: /img/home-advantage.jpg
 share-img: /assets/2017-05-10-home-away-pref_files/unnamed-chunk-9-1.png
 ---

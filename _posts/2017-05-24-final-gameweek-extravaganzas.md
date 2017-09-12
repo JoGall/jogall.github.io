@@ -3,7 +3,7 @@ layout: post
 title: Final gameweek extravaganzas
 subtitle: Was this season's final matchday the highest scoring ever?
 date: "2017-05-24"
-tags: [R, soccer]
+tags: [football / soccer, R]
 output: 
   md_document:
     variant: markdown_github

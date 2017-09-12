@@ -3,7 +3,7 @@ layout: post
 title: Boring, boring Man United? Can we measure excitement and does it correlate with success?
 subtitle: Goals, net goalscoring opportunities, efficiency and luck
 date: "2017-05-19"
-tags: [R, soccer]
+tags: [football / soccer, R]
 output: 
   md_document:
     variant: markdown_github
