@@ -12,13 +12,13 @@ bigimg:
   - "/img/big-img-4.jpg" : ""
 ---
 
-<!-- this code si from https://github.com/daattali/daattali.github.io/blob/master/index.html --> 
+<!-- Buttons for latest posts or posts by category--> 
 <div class="list-filters">
-  button.btn Latest Posts
   <a href="/" class="button.btn">Latest posts</a>
   <a href="/tags" class="button.btn">Posts by tag</a>
 </div>
 
+<!-- Latest posts -->
 <div class="posts-list">
   {% for post in paginator.posts %}
   <article class="post-preview">
