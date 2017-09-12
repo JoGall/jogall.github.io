@@ -14,6 +14,8 @@ bigimg: /img/robin-hood.png
 share-img: "https://github.com/JoGall/jogall.github.io/blob/master/img/robin-hood.png"
 ---
 
+Liverpool's 2016-17 season was a bit of a Jekyll & Hyde one. They went unbeaten against the other teams in the top 6 and sat comfortably on top of the intra-top 6 league table with 2 points per game (ppg).
+
 <!--- R configuration and post-specific webpage code --->
 
 <!-- javascript to hide / show R code used to generate plot -->
@@ -33,8 +35,6 @@ text.innerHTML = "hide";
 </script>
 
 <!--- end --->
-
-Liverpool's 2016-17 season was a bit of a Jekyll & Hyde one. They went unbeaten against the other teams in the top 6 and sat comfortably on top of the intra-top 6 league table with 2 points per game (ppg).
 
     ##                team GP W D L gf ga gd Pts ppg
     ## 1         Liverpool 10 5 5 0 16  9  7  20 2.0
