@@ -22,8 +22,9 @@ description: My GitHub user page
 # List of links in the navigation bar
 navbar-links:
   Home: "index"
-  About me / CV: "cv"
-  Projects: "https://github.com/JoGall"
+  Blog: "blog"
+  CV: "cv"
+  GitHub: "https://github.com/JoGall"
 
 # Image to show in the navigation bar - image must be a square (width = height)
 avatar: "/img/avatar-icon.jpg"
