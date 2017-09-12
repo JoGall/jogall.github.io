@@ -13,12 +13,12 @@ bigimg:
 ---
 
 <!-- Buttons for latest posts or posts by category--> 
-
+<div class="wrapper">
+  <button class=".button">Latest posts</button>
+  <a href = "/tags"><button class=".button.fifth">Posts by tag</button></a>
+</div>
 
 <!-- Latest posts -->
-<button type="button" class=".fifth">Latest posts</button>
-<a href = "/tags"><button class=".button.fifth">Posts by tag</button></a>
-
 <div class="posts-list">
   {% for post in paginator.posts %}
   <article class="post-preview">

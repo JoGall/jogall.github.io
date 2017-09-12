@@ -692,6 +692,10 @@ td.gutter {
 }
 
 /* --- Buttons --- */
+.wrapper {
+    text-align: center;
+}
+
 .button {
   box-sizing: border-box;
   appearance: none;
