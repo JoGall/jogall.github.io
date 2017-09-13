@@ -3,7 +3,7 @@ layout: page
 title: About me / CV
 ---
 
-I'm a evolutionary biologist who loves data of all kinds. Finished my [Ph.D. on insect immunology](http://etheses.whiterose.ac.uk/12275/) in 2016 and now embarking on a career in data science. I'm a massive football (soccer) nerd and like to learn new methods of analysis and visualisation using football data (see my [blog posts](https://jogall.github.io/2017-05-12-home-away-pref/)).
+I'm a evolutionary biologist who loves data of all kinds. Finished my [Ph.D. on insect immunology](http://etheses.whiterose.ac.uk/12275/) in 2016 and now embarking on a career in data science. I'm a massive football (soccer) nerd and like to learn new methods of analysis and visualisation using football data (see my [blog posts](/#blog-latest)).
 
 **Contact**: joedgallagher[at]gmail[dot]com
 
