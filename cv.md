@@ -71,6 +71,6 @@ Skills
 * Active contributor to **outreach** programme 'Discovery' at University of Sheffield, a series of interactive workshops and talks aimed at promoting STEM to schoolchildren (2012-2016)
 * [Blog posts](/#blog-latest)
 
-#### [CV (PDF version)](http://jogall.github.io/JDGallagher_CV.pdf)
-
 ------------
+
+#### [CV (PDF version)](http://jogall.github.io/JDGallagher_CV.pdf)
