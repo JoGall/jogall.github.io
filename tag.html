@@ -3,7 +3,10 @@ layout: page
 title: Browse posts by tag
 ---
 
-{% include '/_includes/filter-posts.html' %}
+{% capture includeGuts %}
+{% include filter-posts.html %} 
+{% endcapture %}
+{{ includeGuts | replace: '    ', ''}}
 
 {% assign rawtags = "" %}
 {% for post in site.posts %}
