@@ -3,11 +3,7 @@ layout: default
 title: Browse posts by tag
 ---
 
-<!-- Buttons for latest posts or posts by category--> 
-<div class="list-filters">
-  <a href="/#blog-latest" class="list-filter">Latest posts</a>
-  <a href="/" class="list-filter filter-selected">Browse posts by tags</a>
-</div>
+{% include 'filter-posts' %}
 
 {% assign rawtags = "" %}
 {% for post in site.posts %}
