@@ -21,7 +21,7 @@ description: My GitHub user page
 
 # List of links in the navigation bar
 navbar-links:
-  Home / Blog posts: "index"
+  Home: "index"
   About me / CV: "cv"
   GitHub: "https://github.com/JoGall"
 
