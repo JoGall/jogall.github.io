@@ -9,8 +9,6 @@ I'm a evolutionary biologist who loves data of all kinds. Finished my [Ph.D. on 
 
 **Location**: Liverpool, UK
 
-#### [PDF version](http://jogall.github.io/JDGallagher_CV.pdf)
-
 ______
 
 Education
@@ -71,6 +69,8 @@ Skills
 * Provided **technical training** on laboratory techniques and data analysis to visiting students and members of staff
 * Co-supervised several undergraduate and Masters research projects
 * Active contributor to **outreach** programme 'Discovery' at University of Sheffield, a series of interactive workshops and talks aimed at promoting STEM to schoolchildren (2012-2016)
-* [Blog posts](https://jogall.github.io)
+* [Blog posts](/#blog-latest)
+
+#### [CV (PDF version)](http://jogall.github.io/JDGallagher_CV.pdf)
 
 ------------
