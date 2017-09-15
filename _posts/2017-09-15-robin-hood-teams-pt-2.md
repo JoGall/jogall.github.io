@@ -475,6 +475,8 @@ gganimate(p, interval = c(rep(0.5, 24), 3), loop = TRUE)
 
 ![](/assets/2017-09-15-robin-hood-teams-pt-2_files/output.gif){:class="img-responsive"}
 
+![](https://github.com/JoGall/jogall.github.io/blob/master/assets/2017-09-15-robin-hood-teams-pt-2_files/output.gif?raw=true){:class="img-responsive"}
+
 Does it look like the slope is getting steeper over time, i.e. teams in more recent seasons show lower `Hoodability`? Let's plot the slope coefficient for each season:
 
 <!-- html to show R code --> 
