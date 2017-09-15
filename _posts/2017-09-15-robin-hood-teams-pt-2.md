@@ -191,11 +191,11 @@ lm(ppg.mean ~ dist, data=rel_pos2)
     ## (Intercept)         dist  
     ##     1.38496     -0.05992
 
-So for each relative league position higher we can expect to lose about -0.06 ppg (and gain 0.06 ppg for each relative league position lower).
+So for each relative league position higher an opposing team is, we can expect to lose about -0.06 ppg (and gain 0.06 ppg for each relative league position lower the opposing team is).
 
-But isn't all this obvious? In fact, is it even possible for the slope of this line to be anything other than negative? After all, teams with a superior league position also have a superior ppg -- that's why they're higher in the league.
+But isn't all this obvious? In fact, is it even possible for the slope of this line to be anything other than negative? After all, teams with a superior league position also have a superior ppg -- isn't that why they're higher in the league?
 
-Let's look at similar regression lines for individual teams to see...
+Let's investigate by looking at similar regression lines for individual teams.
 
 ------------------------------------------------------------------------
 
@@ -402,7 +402,7 @@ head(mods_all, 20)
     ## 19   2003         Manchester City  0.0004987531  16
     ## 20   2004         Birmingham City -0.0007942812  12
 
-19 teams that defied our naive logic by having a positive slope - that is, they picked up more points at higher teams than at lower teams. Seeing as this is probably as rigorous as I'm ever going to define Hoodability, I'll go out on a limb and say these 19 teams are the true Robin Hoods of the Premier League, and that Man United are Robin Hood \#1 in 2002-03 season - when they *won the league*.
+That's 19 teams that have defied our naive logic by having a positive slope - that is, they picked up more points at higher teams than at lower teams. Seeing as this is probably as rigorous as I'm ever going to define Hoodability, I'll go out on a limb and say these 19 teams are the true Robin Hoods of the Premier League, and that Man United are Robin Hood \#1 in 2002-03 season - when they *won the league*.
 
 We already seen them rank at \#5 in our previous Hoodability metric last post, picking up 0.47 more ppg against the top 6 teams than against the bottom 6 (below). Looking at the rest of our new band of Merry Men, there's some vindication for our previous method as most names are present in the figure below: Ipswich Town 1992-93 AND 1994-95, Southampton 1993-94, Leicester City 1997-98... But isn't it nice to have spent all this time defining a more rigorous method to make sure though? [^1]
 
@@ -432,7 +432,7 @@ ggplot(mods_all, aes(x = Pos, y = estimate)) +
 
 ![](/assets/2017-09-15-robin-hood-teams-pt-2_files/unnamed-chunk-14-1.png){:class="img-responsive"}
 
-There might be the **slightest** positive relationship here, but I'm really not convinced there's anything going on.. Not even statistical tests can discount common sense as a linear regression (yes, a regression fitted to regression coefficients) is not significant.
+There might be the *slightest* positive relationship here, but I'm really not convinced there's anything going on.. Not even statistical tests can discount common sense as a linear regression (yes, a regression fitted to regression coefficients) is not significant.
 
 ``` r
 summary(lm(estimate ~ Pos, mods_all))
