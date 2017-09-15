@@ -124,7 +124,7 @@ ggplot(rel_pos, aes(x = dist, y = ppg) ) +
 
 </div>
 
-![](/assets/2017-09-15-robin-hood-teams-pt-2_files/unnamed-chunk-3-1.png)
+![](/assets/2017-09-15-robin-hood-teams-pt-2_files/unnamed-chunk-3-1.png){:class="img-responsive"}
 
 That's a lot of overlapped points - even using transparency it's hard to see how many points are at each point. We could do something fancy like 2D kernel density estimation to generate a heatmap:
 
@@ -145,7 +145,7 @@ ggplot(rel_pos, aes(dist, ppg)) +
 
 </div>
 
-![](/assets/2017-09-15-robin-hood-teams-pt-2_files/unnamed-chunk-4-1.png)
+![](/assets/2017-09-15-robin-hood-teams-pt-2_files/unnamed-chunk-4-1.png){:class="img-responsive"}
 
 That might be a bit more helpful, but let's simplify things even more by calculating mean ppg for each relative league position and plotting that:
 
@@ -171,7 +171,7 @@ ggplot(rel_pos2, aes(x = dist, y = ppg.mean) ) +
 
 </div>
 
-![](/assets/2017-09-15-robin-hood-teams-pt-2_files/unnamed-chunk-5-1.png)
+![](/assets/2017-09-15-robin-hood-teams-pt-2_files/unnamed-chunk-5-1.png){:class="img-responsive"}
 
 That's as clear as day now: teams tend to get more points playing opposition teams that finish lower than them in the league. On average, a team can expect about 2 ppg against a team finishing 10 places below them and about 0.8 ppg against teams finishing 10 places above them. We can even see how many points each individual relative league position is worth by looking at the formula for the linear regression (which defines the blue line in the plot above).
 
@@ -231,7 +231,7 @@ p +
 
 </div>
 
-![](/assets/2017-09-15-robin-hood-teams-pt-2_files/unnamed-chunk-8-1.png)
+![](/assets/2017-09-15-robin-hood-teams-pt-2_files/unnamed-chunk-8-1.png){:class="img-responsive"}
 
 Chelsea sit pretty far above the line of best fit - probably because they had such a strong season, picking up 93 points. Sunderland are just below the line of best fit, perhaps indicating a particularly poor season. However, I'm more interested in the **slope** of these lines; the gradient of Chelsea and Sunderland's lines looks pretty close to the average but Liverpool's is much flatter. Perhaps we can compare use the coefficient of these slopes to define `Hoodability`?
 
@@ -305,7 +305,7 @@ ggplot(mods_2016, aes(x = Pos, y = estimate)) +
 
 </div>
 
-![](/assets/2017-09-15-robin-hood-teams-pt-2_files/unnamed-chunk-11-1.png)
+![](/assets/2017-09-15-robin-hood-teams-pt-2_files/unnamed-chunk-11-1.png){:class="img-responsive"}
 
 The other outlier - way below the line of best fit - is Stoke City. Their more-negative-than-average slope suggests they didn't pick up many points against the top teams but were better at finishing off lower teams. In fact, plotting their individual slopes over the league average shows that Stoke (dark red) outperformed Liverpool (light red) against teams finishing more than two league places below them (dotted line at intercept, -2).
 
@@ -328,7 +328,7 @@ ggplot() +
 
 </div>
 
-![](/assets/2017-09-15-robin-hood-teams-pt-2_files/unnamed-chunk-12-1.png)
+![](/assets/2017-09-15-robin-hood-teams-pt-2_files/unnamed-chunk-12-1.png){:class="img-responsive"}
 
 But I digress; let's calculate these regression coefficients for teams in every Premier League season. Then maybe we can find out the champion of our new Hoodability metric, and see whether there's any relationship between Hoodability and performance.
 
@@ -419,7 +419,7 @@ ggplot(mods_all, aes(x = Pos, y = estimate)) +
 
 </div>
 
-![](/assets/2017-09-15-robin-hood-teams-pt-2_files/unnamed-chunk-14-1.png)
+![](/assets/2017-09-15-robin-hood-teams-pt-2_files/unnamed-chunk-14-1.png){:class="img-responsive"}
 
 There might be the **slightest** positive relationship here, but I'm really not convinced there's anything going on.. Not even statistical tests can discount common sense as a linear regression (yes, a regression fitted to regression coefficients) is not significant.
 
@@ -461,6 +461,8 @@ library(gganimate)
 p <- ggplot(rel_pos, aes(x = dist, y = ppg, group = Season)) + 
   geom_smooth(aes(frame = as.numeric(Season)+1991, cumulative = TRUE), method=lm, se=FALSE, col="grey") +
   geom_smooth(aes(frame = as.numeric(Season)+1991), method=lm, se=FALSE, col="red") +
+  xlab("Relative league position") +
+  ylab("Points per game") +
   my_theme
 
 gganimate(p, interval = c(rep(0.5, 24), 3), loop = TRUE)
@@ -498,7 +500,7 @@ ggplot(d, aes(x = Season, y=slope)) +
 
 </div>
 
-![](/assets/2017-09-15-robin-hood-teams-pt-2_files/unnamed-chunk-17-1.png)
+![](/assets/2017-09-15-robin-hood-teams-pt-2_files/unnamed-chunk-17-1.png){:class="img-responsive"}
 
 There definitely looks like a negative trend, but what does this mean? Teams are getting less Robin Hood-y in recent years, giving less points away to lower-placed teams relative to higher-placed teams? I've got no idea why this might be the case, though; thoughts on a postcard (or in the Discus comments below).
 
@@ -512,8 +514,8 @@ An interesting point was raised by a reader on the previous post as to what driv
 
 I'll be taking a closer look at the proportion of goals scored and conceded from set pieces over Premier League seasons and how this correlates with performance. I may also look at the effects of team height if I can get data for previous seasons; looking at last season, taller teams scored a higher proportion of their goals from set pieces - but also conceded a higher proportion from set pieces(!)
 
-![](https://pbs.twimg.com/media/DGp28otXYAAQcjV.jpg){:class="img-responsive"}
-![](https://pbs.twimg.com/media/DGp28o0XgAAohKV.jpg){:class="img-responsive"}
+![](https://pbs.twimg.com/media/DGp28otXYAAQcjV.jpg)
+![](https://pbs.twimg.com/media/DGp28o0XgAAohKV.jpg)
 
 ------------------------------------------------------------------------
 
