@@ -4,11 +4,14 @@ title: Robin Hood teams (Pt II)
 subtitle: Taking points from the top of the league and giving them to the bottom
 author: "Joe Gallagher"
 date: "2017-09-15"
+tags: [football / soccer, R]
 output: 
   md_document:
     variant: markdown_github
     preserve_yaml: true
-bigimg: /img/robin-hood.jpg
+always_allow_html: yes
+bigimg: /img/robin-hood.png
+share-img: "https://github.com/JoGall/jogall.github.io/blob/master/img/robin-hood.png"
 ---
 
 My [last post](https://jogall.github.io/2017-08-04-robin-hood-teams/) looked at Robin Hood teams - taking points from the top teams only to give them away to the lower teams - and tried to quantify `Hoodability` as the difference in points per game (ppg) against the top 6 teams and ppg against the bottom 6.
