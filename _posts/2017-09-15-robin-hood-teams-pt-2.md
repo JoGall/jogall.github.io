@@ -395,7 +395,7 @@ head(mods_all, 20)
 
 We already seen them rank at \#5 in our previous Hoodability metric last post, picking up 0.47 more ppg against the top 6 teams than against the bottom 6 (below). Looking at the rest of our new band of Merry Men, there's some vindication for our previous method as most names are present in the figure below: Ipswich Town 1992-93 AND 1994-95, Southampton 1993-94, Leicester City 1997-98... But isn't it nice to have spent all this time defining a more rigorous method to make sure though? [^1]
 
-<https://jogall.github.io/assets/2017-08-04-robin-hood-teams_files/unnamed-chunk-8-1.png>
+![](https://jogall.github.io/assets/2017-08-04-robin-hood-teams_files/unnamed-chunk-8-1.png){:class="img-responsive"}
 
 ------------------------------------------------------------------------
 
@@ -508,11 +508,12 @@ That's it for Robin Hood teams -- I'm not sure how this idea spiralled into a tw
 
 An interesting point was raised by a reader on the previous post as to what drives Hoodability - set pieces tend to account for a higher proportion of goals by lower-placed clubs, so perhaps clubs with high Hoodability are relatively poor at defending set pieces. There could certainly be some evidence for this idea looking at last season's data:
 
-<https://a.disquscdn.com/get?url=https%3A%2F%2Fuser-images.githubusercontent.com%2F17113779%2F29029674-6b68b3de-7b80-11e7-93f3-a12f088b0c0f.png width=500>
+![](https://a.disquscdn.com/get?url=https%3A%2F%2Fuser-images.githubusercontent.com%2F17113779%2F29029674-6b68b3de-7b80-11e7-93f3-a12f088b0c0f.png){:class="img-responsive"}
 
 I'll be taking a closer look at the proportion of goals scored and conceded from set pieces over Premier League seasons and how this correlates with performance. I may also look at the effects of team height if I can get data for previous seasons; looking at last season, taller teams scored a higher proportion of their goals from set pieces - but also conceded a higher proportion from set pieces(!)
 
-<https://pbs.twimg.com/media/DGp28otXYAAQcjV.jpg width=500> <https://pbs.twimg.com/media/DGp28o0XgAAohKV.jpg width=500>
+![](https://pbs.twimg.com/media/DGp28otXYAAQcjV.jpg){:class="img-responsive"}
+![](https://pbs.twimg.com/media/DGp28o0XgAAohKV.jpg){:class="img-responsive"}
 
 ------------------------------------------------------------------------
 
