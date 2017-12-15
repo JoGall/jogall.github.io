@@ -12,11 +12,36 @@ bigimg: /img/yawn.jpg
 share-img: /assets/2017-05-19-does-excitement-bring-success_files/unnamed-chunk-25-1.png
 ---
 
-The motivation for this post came from watching yet another of Man United's goalless games, this time against Southampton on Wednesday night. It's one part a serious examination of United's current trend of low scoring -- how this fits in with their previous Premier League record and whether 'negative football' explains their recent lack of success in the league -- and one part the schadenfreude of a Liverpool fan looking to see if I can pronounce them The Most Boring Team Ever.
+The motivation for this post came from watching yet another of Man United's goalless games, this time against Southampton on Wednesday night. It's one part a serious examination of United's current trend of low scoring -- how this fits in with their previous Premier League record and whether 'negative football' can explain their recent lack of league success -- and one part the schadenfreude of a Liverpool fan looking to see if I can pronounce them The Most Boring Team Ever.
+
+<!--- R configuration and post-specific webpage code --->
+<!-- javascript to hide / show R code used to generate plot -->
+<script language="javascript"> 
+function toggle(num) {
+var ele = document.getElementById("toggleText" + num);
+var text = document.getElementById("displayText" + num);
+if(ele.style.display == "block") {
+ele.style.display = "none";
+text.innerHTML = "show";
+}
+else {
+ele.style.display = "block";
+text.innerHTML = "hide";
+}
+} 
+</script>
+
+<!--- end --->
 
 ------------------------------------------------------------------------
 
-Let's fire up `R` and use the most recent build of the `engsoccerdata` package to get all previous results in Premier League (1992 - present), as well as some packages for manipulating and visualisating the data. I won't include the code used to create the plots in this post but it can be found [here](https://github.com/JoGall/jogall.github.io/blob/master/Rmd/2017-05-19-does-excitement-bring-success.Rmd).
+Let's fire up `R` and use the most recent build of the `engsoccerdata` package to get all previous results in Premier League (up to 17th May 2017), as well as some packages for manipulating and visualisating the data. I won't include the code used to create the plots in this post but it can be found [here](https://github.com/JoGall/jogall.github.io/blob/master/Rmd/2017-05-19-does-excitement-bring-success.Rmd).
+
+<!-- html to show R code --> 
+<a id="displayText" href="javascript:toggle(1);" markdown="1">
+(Click here to show R code)
+</a>
+<div markdown="1" id="toggleText1" style="display: none">
 
 ``` r
 devtools::install_github("jalapic/engsoccerdata")
@@ -32,7 +57,15 @@ EPL <- subset(england, tier == 1 & Season %in% 1992:2016) %>%
   mutate(season = as.factor(paste0(Season, "-", substr(Season+1, 3, 4))))
 ```
 
+</div>
+
 First up, let's look at United's goalscoring record this season using the `maketable_all()` function:
+
+<!-- html to show R code --> 
+<a id="displayText" href="javascript:toggle(2);" markdown="1">
+(Click here to show R code)
+</a>
+<div markdown="1" id="toggleText2" style="display: none">
 
 ``` r
 #League goals this season
@@ -40,6 +73,8 @@ maketable_all(subset(EPL, Season == 2016 & tier == 1)) %>%
   select(team, P = GP, F = gf, A = ga, GD = gd, "(Pos)" = Pos) %>%
   arrange(-F)
 ```
+
+</div>
 
     ##                    team  P  F  A  GD (Pos)
     ## 1     Tottenham Hotspur 38 86 26  60     2
@@ -69,12 +104,20 @@ They rank 8th with 54 goals scored -- noticeably the lowest of the 'top 6'; even
 
 Thinking along the lines of measuring 'boring', what about making some kind of 'excitement score'? For neutral viewers, I think the total number of goals scored in a game is often a decent measure for how exciting it was to watch.
 
+<!-- html to show R code --> 
+<a id="displayText" href="javascript:toggle(3);" markdown="1">
+(Click here to show R code)
+</a>
+<div markdown="1" id="toggleText3" style="display: none">
+
 ``` r
 maketable_all(subset(EPL, Season == 2016 & tier == 1)) %>%
   mutate(goals = gf + ga, goals_per_game = round( (gf + ga)/ GP, 2)) %>%
   select(team, goals, goals_per_game) %>%
   arrange(-goals)
 ```
+
+</div>
 
     ##                    team goals goals_per_game
     ## 1       AFC Bournemouth   122           3.21
@@ -100,7 +143,13 @@ maketable_all(subset(EPL, Season == 2016 & tier == 1)) %>%
 
 United rank 19th in this table, their 38 games offering up 83 goals. Only Middlesbrough (80) have provided less excitement for the netural, and even West Brom have produced more than United (no offence, Baggies). Bournemouth top this league with nearly 50% more excitement than United! (Their goal difference (-12) suggests things are probably a bit less exciting if you're a Bournemouth fan though.)
 
-Also, we can't forget the thing that everyone seems to be saying has epitomised United's season: the bore-draw; the nil-nil; the neutral's dreaded 0-0. (Although I know there have been plenty of examples of scintillating nil-nils; see [footnote here](#footnote).)
+Also, we can't forget the thing that everyone seems to be saying has epitomised United's season: the bore-draw; the nil-nil; the neutral's dreaded 0-0. (Although there have been some examples of scintillating nil-nils; see [footnote here](#footnote).)
+
+<!-- html to show R code --> 
+<a id="displayText" href="javascript:toggle(4);" markdown="1">
+(Click here to show R code)
+</a>
+<div markdown="1" id="toggleText4" style="display: none">
 
 ``` r
 subset(EPL, Season == 2016 & tier == 1) %>%
@@ -111,6 +160,8 @@ subset(EPL, Season == 2016 & tier == 1) %>%
   arrange(-nil_nils) %>%
   head(5)
 ```
+
+</div>
 
     ## # A tibble: 5 x 2
     ##                team nil_nils
@@ -125,6 +176,12 @@ United have given us 6 nil-nils this season; only Boro and Southampton have offe
 
 It's not all bad though, more clean sheets are an obvious perk to this trend of shut-outs and nil-nils -- United sit joint-top of the clean sheet league with Spurs this season (17):
 
+<!-- html to show R code --> 
+<a id="displayText" href="javascript:toggle(5);" markdown="1">
+(Click here to show R code)
+</a>
+<div markdown="1" id="toggleText5" style="display: none">
+
 ``` r
 subset(EPL, Season == 2016 & tier == 1) %>%
   homeaway() %>%
@@ -134,6 +191,8 @@ subset(EPL, Season == 2016 & tier == 1) %>%
   arrange(-clean_sheets) %>%
   head(5)
 ```
+
+</div>
 
     ## # A tibble: 5 x 2
     ##                team clean_sheets
@@ -149,6 +208,12 @@ subset(EPL, Season == 2016 & tier == 1) %>%
 ### Is this a new trend for United?
 
 But how does this compare with previous seasons for Man Utd?
+
+<!-- html to show R code --> 
+<a id="displayText" href="javascript:toggle(6);" markdown="1">
+(Click here to show R code)
+</a>
+<div markdown="1" id="toggleText6" style="display: none">
 
 ``` r
 d1 <- lapply(unique(EPL$season), function(x) {
@@ -174,6 +239,8 @@ d2 <- lapply(1992:2016, function(x) {
   mutate(season = as.factor(paste0(Season, "-", substr(Season+1, 3, 4))))
 ```
 
+</div>
+
 Let's look at our throwaway excitement score first. So this season was United's 'least exciting' in terms of goals per game, although only marginally lower than previous record shared between the 2015-16 season and the 2004-05 season.
 
 ![](/assets/2017-05-19-does-excitement-bring-success_files/unnamed-chunk-7-1.png)
@@ -183,6 +250,12 @@ Let's look at our throwaway excitement score first. So this season was United's 
 ![](/assets/2017-05-19-does-excitement-bring-success_files/unnamed-chunk-8-1.png)
 
 Though it has to be said that United don't even approach the record for most boring team in a Premier League season though.
+
+<!-- html to show R code --> 
+<a id="displayText" href="javascript:toggle(7);" markdown="1">
+(Click here to show R code)
+</a>
+<div markdown="1" id="toggleText7" style="display: none">
 
 ``` r
 d3 <- lapply(1992:2016, function(x) {
@@ -201,6 +274,8 @@ d3 <- lapply(1992:2016, function(x) {
 
 which(d3$team=="Manchester United" & d3$Season == 2016)
 ```
+
+</div>
 
     ## [1] 32
 
@@ -225,6 +300,12 @@ Simply put, United have scored more whilst conceding less in previous campaigns.
 I want to wade a bit deeper into match statistics for a bit -- specifically shots for / against and shots on target for / against -- to try and see whether we can show that less attacking play is what is behind this apparent goal drought.
 
 Nothing near as fancy as the stats we might find on www.squawka.com or similar then, but we'll need some more detailed data as this information isn't contained in `engsoccerdata` package. We can use the website [Football-Data](http://www.football-data.co.uk/data.php), which contains historical data on matches from several European leagues. It takes a bit of effort to clean up but the home-made function `getFD()` gets us there.
+
+<!-- html to show R code --> 
+<a id="displayText" href="javascript:toggle(8);" markdown="1">
+(Click here to show R code)
+</a>
+<div markdown="1" id="toggleText8" style="display: none">
 
 ``` r
 #make season codes for URLs
@@ -255,7 +336,15 @@ getFD <- function(start = NULL, end = NULL) {
 }
 ```
 
+</div>
+
 We'll use this function to get the shots statistics we're after: shots for (`sf`), shots against (`sa`), shots on target for (`sotf`) and shots on target against (`sota`). We'll normalise these to games played to account for the fact there's still one game to play this season. (Note I've only gone as far back as the 2000-01 season as that's earliest season to contain this data.) We'll reformat it in the `homeaway()` style used by `engsoccerdata`, which let's us look at all results from each team's perspective.
+
+<!-- html to show R code --> 
+<a id="displayText" href="javascript:toggle(9);" markdown="1">
+(Click here to show R code)
+</a>
+<div markdown="1" id="toggleText9" style="display: none">
 
 ``` r
 #get raw data
@@ -275,6 +364,8 @@ shots <- rbind(
 
 head(shots, 5)
 ```
+
+</div>
 
     ##   Season       Date    team        opp gf ga result sf sa sotf sota venue
     ## 1   2000 2000-08-19 Arsenal Sunderland  0  1      A 14  8    7    2  away
@@ -321,6 +412,12 @@ Let's investigate the value of the metric further by trying to find a team we'd 
 
 This follows what we expected. How about seeing whether net goalscoring opportunities (I'm refusing to acronym-ise this) is a decent predictor of results by plotting it against final league position. We need to dip back into `engsoccerdata` to make league tables for each season, and use a touch of wizardry to merge these dataframes together as they contain different team name variations (e.g. 'Man City' vs. 'Manchester City')
 
+<!-- html to show R code --> 
+<a id="displayText" href="javascript:toggle(10);" markdown="1">
+(Click here to show R code)
+</a>
+<div markdown="1" id="toggleText10" style="display: none">
+
 ``` r
 #summarise shots data
 ss <- shots %>%
@@ -343,6 +440,8 @@ plyr::rbind.fill()
 ss2 <- merge(ss, tables, c("Season", "team")) %>%
   mutate(season = as.factor(paste0(Season, "-", substr(Season+1, 3, 4))) )
 ```
+
+</div>
 
 Let's plot it: net total shots vs. league position...
 
@@ -374,6 +473,12 @@ It might also be aruged that the deviations from this line of best fit are often
 
 Let's just naively call it 'luck' for now seeming as we don't know much yet. We'll measure it as the residual of a point, i.e. its distance from a linear regression fitted to the above data; negative scores are 'unlucky' teams which fall below the line and vice versa.
 
+<!-- html to show R code --> 
+<a id="displayText" href="javascript:toggle(11);" markdown="1">
+(Click here to show R code)
+</a>
+<div markdown="1" id="toggleText11" style="display: none">
+
 ``` r
 #fit a linear regression
 ss3 <- na.omit(ss2)
@@ -383,6 +488,8 @@ ss3 <- ss3 %>%
   mutate(luck = residuals(mod1)) %>%
   arrange(luck)
 ```
+
+</div>
 
 Here's the highest 5 / lowest 5:
 
@@ -433,6 +540,12 @@ What was the most exciting nil-nil ever? i.e. the game with the highest number o
 
 Funnily enough, Man United gave us The Most Exciting Nil-Nil Of All-Time (well, of the period 2000-01 - present) against Burnley at Old Trafford this season. That is if we go by total number of shots -- there were 44 shots in this game, 37 of those taken by United!
 
+<!-- html to show R code --> 
+<a id="displayText" href="javascript:toggle(12);" markdown="1">
+(Click here to show R code)
+</a>
+<div markdown="1" id="toggleText12" style="display: none">
+
 ``` r
 subset(shots_raw, FTHG==0 & FTAG==0) %>%
   mutate(shots = HS + AS) %>%
@@ -440,6 +553,8 @@ subset(shots_raw, FTHG==0 & FTAG==0) %>%
   arrange(-shots) %>%
   head(5)
 ```
+
+</div>
 
     ##         Date   HomeTeam    AwayTeam shots home away
     ## 1 2016-10-29 Man United     Burnley    44   37    7
@@ -450,6 +565,12 @@ subset(shots_raw, FTHG==0 & FTAG==0) %>%
 
 Or if clinical excitement is more your thing, the title of Most-Shots-On-Target-In-A-Nil-Nil goes to the 25 SoT recorded in the game between Spurs and Man City at White Hart Lane two seasons ago; Spurs: 18, City: 7.
 
+<!-- html to show R code --> 
+<a id="displayText" href="javascript:toggle(13);" markdown="1">
+(Click here to show R code)
+</a>
+<div markdown="1" id="toggleText13" style="display: none">
+
 ``` r
 subset(shots_raw, FTHG==0 & FTAG==0) %>%
   mutate(SoT = HST + AST) %>%
@@ -457,6 +578,8 @@ subset(shots_raw, FTHG==0 & FTAG==0) %>%
   arrange(-SoT) %>%
   head(5)
 ```
+
+</div>
 
     ##         Date    HomeTeam  AwayTeam SoT home away
     ## 1 2010-08-14   Tottenham  Man City  25   18    7
