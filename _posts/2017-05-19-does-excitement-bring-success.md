@@ -35,7 +35,7 @@ text.innerHTML = "hide";
 
 ------------------------------------------------------------------------
 
-Let's fire up `R` and use the most recent build of the `engsoccerdata` package to get all previous results in Premier League (up to 17th May 2017), as well as some packages for manipulating and visualisating the data. I won't include the code used to create the plots in this post but it can be found [here](https://github.com/JoGall/jogall.github.io/blob/master/Rmd/2017-05-19-does-excitement-bring-success.Rmd).
+Let's fire up `R` and use the most recent build of the `engsoccerdata` package to get all previous results in Premier League (up to 17th May 2017), as well as some packages for manipulating and visualisating the data.
 
 <!-- html to show R code --> 
 <a id="displayText" href="javascript:toggle(1);" markdown="1">
@@ -243,19 +243,55 @@ d2 <- lapply(1992:2016, function(x) {
 
 Let's look at our throwaway excitement score first. So this season was United's 'least exciting' in terms of goals per game, although only marginally lower than previous record shared between the 2015-16 season and the 2004-05 season.
 
+<!-- html to show R code --> 
+<a id="displayText" href="javascript:toggle(7);" markdown="1">
+(Click here to show R code)
+</a>
+<div markdown="1" id="toggleText7" style="display: none">
+
+``` r
+ggplot(d2, aes(x = season, y = g_p90, group=1)) + 
+  geom_point(stat='summary', fun.y=sum, col="red") +
+  stat_summary(fun.y=sum, geom="line", col="red") +
+  ylab("Total goals per game") +
+  xlab("") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle=90, hjust=1))
+```
+
+</div>
+
 ![](/assets/2017-05-19-does-excitement-bring-success_files/unnamed-chunk-7-1.png)
 
+<!-- html to show R code --> 
+<a id="displayText" href="javascript:toggle(8);" markdown="1">
+(Click here to show R code)
+</a>
+<div markdown="1" id="toggleText8" style="display: none">
+
+``` r
 2004-05 was also the only other season that produced as many nil-nils.
+
+ggplot(d2, aes(x = season, y = nil_nils, group=1)) + 
+  geom_point(stat='summary', fun.y=sum, col="red") +
+  stat_summary(fun.y=sum, geom="line", col="red") +
+  ylab("Nil-nils") +
+  xlab("") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle=90, hjust=1))
+```
+
+</div>
 
 ![](/assets/2017-05-19-does-excitement-bring-success_files/unnamed-chunk-8-1.png)
 
 Though it has to be said that United don't even approach the record for most boring team in a Premier League season though.
 
 <!-- html to show R code --> 
-<a id="displayText" href="javascript:toggle(7);" markdown="1">
+<a id="displayText" href="javascript:toggle(9);" markdown="1">
 (Click here to show R code)
 </a>
-<div markdown="1" id="toggleText7" style="display: none">
+<div markdown="1" id="toggleText9" style="display: none">
 
 ``` r
 d3 <- lapply(1992:2016, function(x) {
@@ -283,13 +319,75 @@ Their 2016-17 campaign ranks 32nd in the lowest number of total number of goals 
 
 A bit more seriously, let's focus on United's own goalscoring. The last two seasons have saw them score the fewest goals per game in their EPL history...
 
+<!-- html to show R code --> 
+<a id="displayText" href="javascript:toggle(10);" markdown="1">
+(Click here to show R code)
+</a>
+<div markdown="1" id="toggleText10" style="display: none">
+
+``` r
+ggplot(d2, aes(x = season, y = gf_p90, group=1)) + 
+  geom_point(stat='summary', fun.y=sum, col="red") +
+  stat_summary(fun.y=sum, geom="line", col="red") +
+  ylab("Total goals per game") +
+  xlab("") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle=90, hjust=1))
+```
+
+</div>
+
 ![](/assets/2017-05-19-does-excitement-bring-success_files/unnamed-chunk-10-1.png)
 
 ...and the apparent silver lining provided by keeping more clean sheets doesn't seem so great compared to previous seasons.
 
+<!-- html to show R code --> 
+<a id="displayText" href="javascript:toggle(11);" markdown="1">
+(Click here to show R code)
+</a>
+<div markdown="1" id="toggleText11" style="display: none">
+
+``` r
+ggplot(d2, aes(x = season, y = clean_sheets, group=1)) + 
+  geom_point(stat='summary', fun.y=sum, col="red") +
+  stat_summary(fun.y=sum, geom="line", col="red") +
+  scale_y_continuous(lim=c(10, 25)) +
+  ylab("Clean sheets") +
+  xlab("") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle=90, hjust=1))
+```
+
+</div>
+
 ![](/assets/2017-05-19-does-excitement-bring-success_files/unnamed-chunk-11-1.png)
 
 Simply put, United have scored more whilst conceding less in previous campaigns. Here's a plot of both goals for and against over the years, just for the craic.
+
+<!-- html to show R code --> 
+<a id="displayText" href="javascript:toggle(12);" markdown="1">
+(Click here to show R code)
+</a>
+<div markdown="1" id="toggleText12" style="display: none">
+
+``` r
+ggplot(d1, aes(x = season, y = gf / GP, group=1)) + 
+  geom_point(aes(x = season, y = gf / GP, group=1, colour="For"), stat='summary', fun.y=sum) +
+  stat_summary(fun.y=sum, geom="line", col="red") +
+  geom_point(aes(x = season, y = ga / GP, group=1, colour="Against"), stat='summary', fun.y=sum) +
+  stat_summary(aes(x = season, y = ga / GP, group=1), fun.y=sum, geom="line", col="blue") +
+  scale_y_continuous(lim=c(0,3), expand=c(0,0)) +
+  ylab("Mean goals per game") +
+  xlab("") +
+  scale_colour_manual(name="", values = c("For" = "red", "Against" = "blue")) +
+  scale_linetype_manual(name="Legend", values = c("a" = "dashed", "b" = "dotted")) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle=90, hjust=1),
+    legend.position=c(0.95,0.05),
+    legend.justification=c(1,0))
+```
+
+</div>
 
 ![](/assets/2017-05-19-does-excitement-bring-success_files/unnamed-chunk-12-1.png)
 
@@ -302,10 +400,10 @@ I want to wade a bit deeper into match statistics for a bit -- specifically shot
 Nothing near as fancy as the stats we might find on www.squawka.com or similar then, but we'll need some more detailed data as this information isn't contained in `engsoccerdata` package. We can use the website [Football-Data](http://www.football-data.co.uk/data.php), which contains historical data on matches from several European leagues. It takes a bit of effort to clean up but the home-made function `getFD()` gets us there.
 
 <!-- html to show R code --> 
-<a id="displayText" href="javascript:toggle(8);" markdown="1">
+<a id="displayText" href="javascript:toggle(13);" markdown="1">
 (Click here to show R code)
 </a>
-<div markdown="1" id="toggleText8" style="display: none">
+<div markdown="1" id="toggleText13" style="display: none">
 
 ``` r
 #make season codes for URLs
@@ -341,10 +439,10 @@ getFD <- function(start = NULL, end = NULL) {
 We'll use this function to get the shots statistics we're after: shots for (`sf`), shots against (`sa`), shots on target for (`sotf`) and shots on target against (`sota`). We'll normalise these to games played to account for the fact there's still one game to play this season. (Note I've only gone as far back as the 2000-01 season as that's earliest season to contain this data.) We'll reformat it in the `homeaway()` style used by `engsoccerdata`, which let's us look at all results from each team's perspective.
 
 <!-- html to show R code --> 
-<a id="displayText" href="javascript:toggle(9);" markdown="1">
+<a id="displayText" href="javascript:toggle(14);" markdown="1">
 (Click here to show R code)
 </a>
-<div markdown="1" id="toggleText9" style="display: none">
+<div markdown="1" id="toggleText14" style="display: none">
 
 ``` r
 #get raw data
@@ -382,17 +480,90 @@ head(shots, 5)
 
 So now we've got the data cleaned up an ready to go, let's look at United's previous records for shots for and against. First, shots on goal was at its lowest last season but looks back to normal this season.
 
+
+<!-- html to show R code --> 
+<a id="displayText" href="javascript:toggle(15);" markdown="1">
+(Click here to show R code)
+</a>
+<div markdown="1" id="toggleText15" style="display: none">
+
+``` r
+ggplot(subset(shots, team=="Man United"), aes(x = season, y = sf)) + 
+  stat_summary(fun.y = mean, geom = "point") +
+  stat_summary(fun.data = mean_se, geom = "errorbar") +
+  ylab("Shots per game") +
+  xlab("") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle=90, hjust=1))
+```
+
+</div>
+
 ![](/assets/2017-05-19-does-excitement-bring-success_files/unnamed-chunk-15-1.png)
 
 Shots on target tells a different story, showing a real difference between United over the last 4 seasons and their more dominant period between 2000-01 to 2012-13.
+
+<!-- html to show R code --> 
+<a id="displayText" href="javascript:toggle(16);" markdown="1">
+(Click here to show R code)
+</a>
+<div markdown="1" id="toggleText16" style="display: none">
+
+``` r
+ggplot(subset(shots, team=="Man United"), aes(x = season, y = sotf)) + 
+  stat_summary(fun.y = mean, geom = "point") +
+  stat_summary(fun.data = mean_se, geom = "errorbar") +
+  ylab("Shots on target per game") +
+  xlab("") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle=90, hjust=1))
+```
+
+</div>
 
 ![](/assets/2017-05-19-does-excitement-bring-success_files/unnamed-chunk-16-1.png)
 
 Again though, this seems to work both ways - United have also afforded their opposition fewer goalscoring opportunities in the last 4 seasons.
 
+<!-- html to show R code --> 
+<a id="displayText" href="javascript:toggle(17);" markdown="1">
+(Click here to show R code)
+</a>
+<div markdown="1" id="toggleText17" style="display: none">
+
+``` r
+ggplot(subset(shots, team=="Man United"), aes(x = season, y = sota)) + 
+  stat_summary(fun.y = mean, geom = "point") +
+  stat_summary(fun.data = mean_se, geom = "errorbar") +
+  ylab("Shots on target against per game") +
+  xlab("") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle=90, hjust=1))
+```
+
+</div>
+
 ![](/assets/2017-05-19-does-excitement-bring-success_files/unnamed-chunk-17-1.png)
 
 Although expanding our 'excitement score' from total goals per game to total shots per game, these 4 seasons look **much** less exciting for the neutral.
+
+<!-- html to show R code --> 
+<a id="displayText" href="javascript:toggle(18);" markdown="1">
+(Click here to show R code)
+</a>
+<div markdown="1" id="toggleText18" style="display: none">
+
+``` r
+ggplot(subset(shots, team=="Man United"), aes(x = season, y = sotf + sota)) + 
+  stat_summary(fun.y = mean, geom = "point") +
+  stat_summary(fun.data = mean_se, geom = "errorbar") +
+  ylab("Shots on target per game") +
+  xlab("") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle=90, hjust=1))
+```
+
+</div>
 
 ![](/assets/2017-05-19-does-excitement-bring-success_files/unnamed-chunk-18-1.png)
 
@@ -402,21 +573,59 @@ Although expanding our 'excitement score' from total goals per game to total sho
 
 I want to do something more interesting with our shots data. I'm interested in whether this so-called 'negative football' -- creating less but also stifling the opposition -- works or not. Let's make a metric called 'net goalscoring opportunities': simply the difference between chances created and chances conceded. Here's the data for United's net shots per game over previous seasons (I won't show the data for shots on target but it looks very similar).
 
+<!-- html to show R code --> 
+<a id="displayText" href="javascript:toggle(19);" markdown="1">
+(Click here to show R code)
+</a>
+<div markdown="1" id="toggleText19" style="display: none">
+
+``` r
+ggplot(subset(shots, team=="Man United"), aes(x = season, y = sf - sa)) + 
+  stat_summary(fun.y = mean, geom = "point") +
+  stat_summary(fun.data = mean_se, geom = "errorbar") +
+  ylab("Net goalscoring opportunites (shots for - shots against)") +
+  xlab("") +
+  geom_hline(yintercept=0, lty=3) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle=90, hjust=1))
+```
+
+</div>
+  
 ![](/assets/2017-05-19-does-excitement-bring-success_files/unnamed-chunk-19-1.png)
 
 Last season was by far the worst, entering the negative in some games, but this season's United look back to old form. I'm not sure how useful this number is in measuring success; United's 2nd lowest score came in the 2012-13 season yet they won the league..
 
 Let's investigate the value of the metric further by trying to find a team we'd expect to have a net goalscoring opportunity. A team that's got a few PL seasons under their belt but spent much time in the bottom half of the league maybe. West Brom are the first team that come to mind (sorry again, Baggies).
 
+<!-- html to show R code --> 
+<a id="displayText" href="javascript:toggle(20);" markdown="1">
+(Click here to show R code)
+</a>
+<div markdown="1" id="toggleText20" style="display: none">
+
+``` r
+ggplot(subset(shots, team=="West Brom"), aes(x = season, y = sf - sa)) + 
+  stat_summary(fun.y = mean, geom = "point") +
+  stat_summary(fun.data = mean_se, geom = "errorbar") +
+  ylab("Net goalscoring opportunites (shots for - shots against)") +
+  xlab("") +
+  geom_hline(yintercept=0, lty=3) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle=90, hjust=1))
+```
+
+</div>
+  
 ![](/assets/2017-05-19-does-excitement-bring-success_files/unnamed-chunk-20-1.png)
 
 This follows what we expected. How about seeing whether net goalscoring opportunities (I'm refusing to acronym-ise this) is a decent predictor of results by plotting it against final league position. We need to dip back into `engsoccerdata` to make league tables for each season, and use a touch of wizardry to merge these dataframes together as they contain different team name variations (e.g. 'Man City' vs. 'Manchester City')
 
 <!-- html to show R code --> 
-<a id="displayText" href="javascript:toggle(10);" markdown="1">
+<a id="displayText" href="javascript:toggle(21);" markdown="1">
 (Click here to show R code)
 </a>
-<div markdown="1" id="toggleText10" style="display: none">
+<div markdown="1" id="toggleText21" style="display: none">
 
 ``` r
 #summarise shots data
@@ -445,10 +654,48 @@ ss2 <- merge(ss, tables, c("Season", "team")) %>%
 
 Let's plot it: net total shots vs. league position...
 
+<!-- html to show R code --> 
+<a id="displayText" href="javascript:toggle(22);" markdown="1">
+(Click here to show R code)
+</a>
+<div markdown="1" id="toggleText22" style="display: none">
+
+``` r
+ggplot(ss2, aes(x = Pos, y = net_S)) + 
+  geom_point(alpha=0.5) +
+  geom_smooth(method=lm) +
+  geom_point(data = subset(ss2, team=="Manchester United" & Season == 2016), aes(x = Pos, y = net_SoT), col="red", size=4) +
+  geom_hline(yintercept=0, lty=3) +
+  scale_x_reverse(breaks=c(20, 15, 10, 5, 1), limits=c(20, 1)) +
+  ylab("Net shots (for - against)") +
+  xlab("League position") +
+  theme_bw()
+  
+  
 ![](/assets/2017-05-19-does-excitement-bring-success_files/unnamed-chunk-22-1.png)
 
 ...and net shots on target vs. league position:
 
+<!-- html to show R code --> 
+<a id="displayText" href="javascript:toggle(23);" markdown="1">
+(Click here to show R code)
+</a>
+<div markdown="1" id="toggleText23" style="display: none">
+
+``` r
+ggplot(ss2, aes(x = Pos, y = net_SoT)) + 
+  geom_point(alpha=0.5) +
+  geom_smooth(method=lm) +
+  geom_point(data = subset(ss2, team=="Manchester United" & Season == 2016), aes(x = Pos, y = net_SoT), col="red", size=4) +
+  geom_hline(yintercept=0, lty=3) +
+  scale_x_reverse(breaks=c(20, 15, 10, 5, 1), limits=c(20, 1)) +
+  ylab("Net shots on target (for - against)") +
+  xlab("League position") +
+  theme_bw()
+```
+
+</div>
+  
 ![](/assets/2017-05-19-does-excitement-bring-success_files/unnamed-chunk-23-1.png)
 
 It looks like a decent metric of success. In both cases, the line of best fit crosses the zero line at around 10-11th position, exactly where we'd have expected when trying to separate the top and bottom teams.
@@ -457,10 +704,51 @@ Not forgetting Man United, I've added their point for this season in red. They'r
 
 But hang on; this pattern is almost identical to what we see with goal difference...
 
+<!-- html to show R code --> 
+<a id="displayText" href="javascript:toggle(24);" markdown="1">
+(Click here to show R code)
+</a>
+<div markdown="1" id="toggleText24" style="display: none">
+
+``` r
+ggplot(tables, aes(x = Pos, y = gd)) + 
+  geom_point(alpha=0.5) +
+  geom_smooth(method=lm) +
+  geom_point(data = subset(ss2, team=="Manchester United" & Season == 2016), aes(x = Pos, y = net_SoT), col="red", size=4) +
+  scale_x_reverse(breaks=c(20, 15, 10, 5, 1), limits=c(20, 1)) +
+  geom_hline(yintercept=0, lty=3) +
+  ylab("Goal difference") +
+  xlab("League position") +
+  theme_bw()
+```
+
+</div>
+  
 ![](/assets/2017-05-19-does-excitement-bring-success_files/unnamed-chunk-24-1.png)
 
 ...and this similarity might be due to a strong correlation between net goalscoring opportunites and actual goal difference. Not that that should be too surprising.
 
+<!-- html to show R code --> 
+<a id="displayText" href="javascript:toggle(25);" markdown="1">
+(Click here to show R code)
+</a>
+<div markdown="1" id="toggleText25" style="display: none">
+
+``` r
+ggplot(ss2, aes(x = net_SoT, y = gd)) + 
+  geom_point(alpha=0.5) +
+  geom_smooth(method=lm) +
+  geom_point(data = subset(ss2, team=="Manchester United" & Season == 2016), aes(x = net_SoT, y = gd), col="red", size=4) +
+  geom_text(aes(x = 3.5, y = 15), label = "Man Utd (2016-17)") +
+  geom_hline(yintercept=0, lty=3) +
+  geom_vline(xintercept=0, lty=3) +
+  ylab("Actual goal difference") +
+  xlab("Net goalscoring opportunities (SoT for - SoT against)") +
+  theme_bw()
+```
+
+</div>
+  
 ![](/assets/2017-05-19-does-excitement-bring-success_files/unnamed-chunk-25-1.png)
 
 ------------------------------------------------------------------------
@@ -474,10 +762,10 @@ It might also be aruged that the deviations from this line of best fit are often
 Let's just naively call it 'luck' for now seeming as we don't know much yet. We'll measure it as the residual of a point, i.e. its distance from a linear regression fitted to the above data; negative scores are 'unlucky' teams which fall below the line and vice versa.
 
 <!-- html to show R code --> 
-<a id="displayText" href="javascript:toggle(11);" markdown="1">
+<a id="displayText" href="javascript:toggle(26);" markdown="1">
 (Click here to show R code)
 </a>
-<div markdown="1" id="toggleText11" style="display: none">
+<div markdown="1" id="toggleText26" style="display: none">
 
 ``` r
 #fit a linear regression
@@ -520,6 +808,32 @@ Interestingly, the first team that came to mind was Leicester this season prior 
 
 The unluckiest and/or most wasteful and/or most leaky defensive season in PL history was had by Wigan in 2009-10, who fall way below the line (dark blue). And the flukiest and/or most clinical and/or defensive rock of a season was had by Man City in 2013-14 (sky blue). Not sure this stat makes me feel any better about that season whatever it means, but I'm sure it's a nice bonus for any United fans that are still reading.
 
+<!-- html to show R code --> 
+<a id="displayText" href="javascript:toggle(27);" markdown="1">
+(Click here to show R code)
+</a>
+<div markdown="1" id="toggleText27" style="display: none">
+
+``` r
+leicester_point <- shots %>%
+  subset(team == "Leicester" & Date > "2016-08-13" & Date <= "2017-02-27") %>%
+  summarise(gd = sum(gf) - sum(ga), net_S = (sum(sf) / n()) - (sum(sa) / n()), net_SoT  = (sum(sotf) / n()) - (sum(sota) / n()) )
+
+ggplot(ss2, aes(x = net_SoT, y = gd)) + 
+  geom_point(alpha=0.5) +
+  geom_smooth(method=lm) +
+  geom_point(data = subset(ss2, team=="Manchester City" & Season == 2013), aes(x = net_SoT, y = gd), col="lightblue", size=4) +
+  geom_point(data = subset(ss2, team=="Wigan Athletic" & Season == 2009), aes(x = net_SoT, y = gd), col="darkblue", size=4) +
+  geom_point(aes(x = leicester_point$net_S, y = leicester_point$net_SoT), col="yellow", size=4) +
+  geom_hline(yintercept=0, lty=3) +
+  geom_vline(xintercept=0, lty=3) +
+  ylab("Actual goal difference") +
+  xlab("Net goalscoring opportunities (SoT for - SoT against)") +
+  theme_bw()
+```
+
+</div>
+  
 ![](/assets/2017-05-19-does-excitement-bring-success_files/unnamed-chunk-28-1.png)
 
 ------------------------------------------------------------------------
@@ -541,10 +855,10 @@ What was the most exciting nil-nil ever? i.e. the game with the highest number o
 Funnily enough, Man United gave us The Most Exciting Nil-Nil Of All-Time (well, of the period 2000-01 - present) against Burnley at Old Trafford this season. That is if we go by total number of shots -- there were 44 shots in this game, 37 of those taken by United!
 
 <!-- html to show R code --> 
-<a id="displayText" href="javascript:toggle(12);" markdown="1">
+<a id="displayText" href="javascript:toggle(28);" markdown="1">
 (Click here to show R code)
 </a>
-<div markdown="1" id="toggleText12" style="display: none">
+<div markdown="1" id="toggleText28" style="display: none">
 
 ``` r
 subset(shots_raw, FTHG==0 & FTAG==0) %>%
@@ -566,10 +880,10 @@ subset(shots_raw, FTHG==0 & FTAG==0) %>%
 Or if clinical excitement is more your thing, the title of Most-Shots-On-Target-In-A-Nil-Nil goes to the 25 SoT recorded in the game between Spurs and Man City at White Hart Lane two seasons ago; Spurs: 18, City: 7.
 
 <!-- html to show R code --> 
-<a id="displayText" href="javascript:toggle(13);" markdown="1">
+<a id="displayText" href="javascript:toggle(29);" markdown="1">
 (Click here to show R code)
 </a>
-<div markdown="1" id="toggleText13" style="display: none">
+<div markdown="1" id="toggleText29" style="display: none">
 
 ``` r
 subset(shots_raw, FTHG==0 & FTAG==0) %>%
