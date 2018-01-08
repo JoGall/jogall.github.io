@@ -11,6 +11,7 @@ output:
     preserve_yaml: true
 always_allow_html: yes
 bigimg: /img/coutinho.jpg
+shareimg: https://raw.githubusercontent.com/JoGall/jogall.github.io/master/img/coutinho.jpg
 ---
 
 I’m not going to lie; I’m gutted about Philippe Coutinho leaving. Not as gutted as Suárez leaving, obviously, but still like 60% as much.
