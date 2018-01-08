@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Bye Bye Phil
-subtitle: Life after Coutinho
+title: Life after Coutinho
+subtitle: The importance of finding an immediate replacement to steady the ship
 author: "Joe Gallagher"
 date: "2018-06-07"
 tags: [football, soccer]
@@ -13,15 +13,15 @@ always_allow_html: yes
 bigimg: /img/coutinho.jpg
 ---
 
-I’m not going to lie; I’m gutted about Philippe Coutinho leaving. Not as gutted as Suárez going, obviously, but still like 60% as much.
+I’m not going to lie; I’m gutted about Philippe Coutinho leaving. Not as gutted as Suárez leaving, obviously, but still like 60% as much.
 
-I’ve tried calling on righteous indignation from the ‘no player is bigger than the club’ mantra; I’ve tried saying good riddance and calling him a snake; I’ve tried believing the tabloids tell us we’re going to sign Thomas Lemar, Julian Draxler, Alexis Sanchez, Leon Goretzka, Riyad Mahrez, Nabil Fekir, or Christian Pulisic (or possibly all seven) this month. But the only real positive seems to be that we were doomed to lose him anyway and letting him go now puts an end to the whole fiasco of endless media speculation and constant underhanded games from Barcelona, allowing the rest of the team to try and get back to the season at hand.
+I’ve tried calling on righteous indignation from the ‘no player is bigger than the club’ mantra; I’ve tried saying good riddance and calling him a snake; I’ve tried believing the tabloids tell us we’re going to sign Thomas Lemar, Julian Draxler, Alexis Sanchez, Leon Goretzka, Riyad Mahrez, Nabil Fekir, or Christian Pulisic (or possibly all seven) this month. But the only positive seems to be that we seemed doomed to lose him anyway and letting him go now puts an end to the whole fiasco of endless media speculation and constant underhanded games from Barcelona, allowing the rest of the team to try and get back to the season at hand.
 
 It’s little comfort though because there's now a big void in our attack and it needs filling immediately. And if getting the right player in this month seems like a big ask, then getting a new signing to fit into a new system and gel with a new set of teammates halfway through the season seems not only impossible but unfair. Whilst we still have plenty of strength left in the squad, such destablisation has serious potential to derail our season and cause us to miss out on Champions League qualification (and totally negate any extra millions we may have squeezed from Barca by selling mid-season).
 
 ------------------------------------------------------------------------
 
-For my own catharsis, I’m going to eulogise Phil for a couple of paragraphs before looking for a golden sky. \*Dons black suit.\* An intelligent player that could carve something out of seemingly nothing, Coutinho really honed his finishing over the last few seasons, trademarking his cut-inside-and-curl-it and achieving clinicality [^1] inside the box – in fact, I can’t off the top of my head remember him scoring a bad goal. But his development into a proper playmaker over the last two seasons has been an equal joy to behold; his ability to dictate the tempo of the game, his roaming movement and ability to open up areas of the pitch with a mazy dribble or well-placed pass.
+For my own catharsis, let's eulogise Phil for a bit first before looking for a golden sky. \*Dons black suit.\* An intelligent player that could carve something out of seemingly nothing, Coutinho really honed his finishing over the last few seasons, trademarking his cut-inside-and-curl-it and achieving clinicality [^1] inside the box – in fact, I can’t off the top of my head remember him scoring a bad goal. But his development into a proper playmaker over the last two seasons has been an equal joy to behold; his ability to dictate the tempo of the game, his roaming movement and ability to open up areas of the pitch with a mazy dribble or well-placed pass.
 
 His deep-lying central role in the 4-0 against West Ham near the end of last season really displayed his cultivated creativity and maturity for me, and was the first time I had that spine-tingling “holy shit, we’ve got a world class player on our hands” moment (closely followed by that spine-tingling “oh shit, Spain are soon going to be calling” moment). It’s these attributes that have proven the difference between a frustrating draw and grasping three points on many occasions. I won’t go as far as to say he recaptured Gerrard’s infamous ability to pick the team up by the scruff of the neck (Phil’s always seemed more likely to go missing in the big games), but it’s certainly felt the closest we’ve came to having that back in the team since he left.
 
@@ -35,15 +35,17 @@ Nevertheless, one thing I feel we’ve often lacked without Coutinho playing is 
 
 The inevitable bitter pill to swallow – whomever we go for, now or in the summer – is going to be the price. Reports suggested Monaco accepted a £90m from Arsenal in the summer (an apparently ill-conceived bluff by Arsenal which they hilariously pulled the plug on immediately after the bid was accepted), and whilst this would have seemed like silly money even a year ago, I would just say fuck it and cough up £90m now if he seems like the best fit. We’re never going to get a bargain with a transparent warchest anyway.
 
-Many have argued we shouldn't rush out and sign a replacement this month given some of the previous flops we've purchased in January: Christian Benteke, Mario Balotelli, Andy Carroll. But what about the good signings? Suarez, Sturridge, Mascherano, Agger and Coutinho himself were all signed in January transfer windows. This hit:miss ratio seems the same as during the summer transfer window to me.
+Many have argued we shouldn't rush out and sign a replacement this month given some of the previous flops we've purchased in January: Christian Benteke, Mario Balotelli, Andy Carroll. But what about the good signings? Suarez, Sturridge, Mascherano, Agger, and Coutinho himself were all signed in January transfer windows. This hit:miss ratio seems much the same as during the summer transfer window to me.
 
-I’ve got faith in Jürgen. He’s had five months to prepare for this increasingly-likely eventuality, and he’s got 23 shopping days left to steady the ship. I don't think he'd have spent £75m on a defender this January if he wasn't focussed on the season at hand. But there's a serious chasm in the engine room of the team that now needs filling, and as soon as possible.
+I’ve got faith in Jürgen. He’s had five months to prepare for this increasingly-likely eventuality, and he’s got 23 shopping days left to steady the ship. Surely there's a plan in place; you wouldn't think we'd have spent £75m on a defender this month unless we were focussed on the season at hand.. But there's a serious chasm in the engine room of the team now and it needs to be addressed immediately.
 
 ------------------------------------------------------------------------
 
 ### Epilogue:
 
-As for Phil, I wish the lad the best of luck, although I’d be lying if I said it was with quite the same degree of genuine amicability as I wished the departing Suárez. It’s hard to put a finger on why I (and it seems many others) feel this way. If a player genuinely wants to leave his current club and there’s nothing that can change his mind, then recovering a decent fee from their eventual departure seems the only good option available to the club. The £142m Coutinho fetched was probably at least partly due to him signing a new contract with Liverpool in January, but this contract has acted like a leash for him and many have demanded he see out the remaining 4.5 years left on it. One could argue this is exactly how contracts should work, yet I’ve heard many grievances about Emre Can refusing to sign a new contract and leaving for Juventus on a free at the end of this season, despite honouring him honouring the contract he signed by seeing it out and choosing not to sign another one. If you have ambitions of leaving your current club, it seems you’re damned if you do and damned if you don’t (sign a new contract). I'm not sure which option is better for the player, but as a fan I feel much more aggrieved to be losing Can after sinking £10m, four years, and 100+ games into developing him than to be cashing in on £142m for Phil.
+As for Phil, I wish the lad the best of luck, although I’d be lying if I said it was with quite the same degree of genuine amicability as I wished the departing Suárez. It’s hard to put a finger on why I (and it seems many others) feel this way. If a player genuinely wants to leave his current club and there’s nothing the club can do to change their mind, then recovering a decent fee from their eventual departure seems like the only good option available to the club. The £142m Coutinho fetched was (probably at least partly) due to him signing a new contract with Liverpool in January, but this contract has acted like a leash for him and many have demanded he see out the remaining 4.5 years left on it.
+
+One could argue this is exactly how contracts should work. Yet I’ve heard many grievances about Emre Can refusing to sign a new contract with Liverpool and choosing to instead leave for Juventus on a free at the end of this season, despite him honouring the contract he signed by seeing it out and choosing not to sign another one. If you have ambitions of leaving your current club, it seems you’re damned if you do and damned if you don’t (sign a new contract). I'm not sure which option is better for the player, but as a fan I feel much more aggrieved to be losing Can after sinking £10m, four years, and 100+ games into developing him than to be cashing in on £142m for Phil.
 
 ------------------------------------------------------------------------
 
