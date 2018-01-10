@@ -3,7 +3,7 @@ layout: post
 title: Life after Coutinho
 subtitle: Liverpool can't afford complacency and need someone to steady the ship immediately
 author: "Joe Gallagher"
-date: "2018-06-07"
+date: "2018-01-07"
 tags: [football, soccer]
 output: 
   md_document:
