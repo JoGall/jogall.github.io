@@ -46,7 +46,7 @@ Now if we want to estimate the probability of a goal being scored from *any* sho
 
 We can visualise all our permutations using a simple decision tree; as goal or miss are the only two possibilities at any branch, the probability of any shot missing must be 1 - xG.
 
-![](/assets/2019-01-15-adjusted-xG_files/decision-tree.png){:class="img-responsive"}
+![](/assets/2019-01-15-adjusted-xG_files/decision-tree.png)
 
 Next, let's calculate the probability of each permutation by running through the mathematical notation for each permutation.
 
@@ -197,7 +197,7 @@ soccerPitchHalf() +
   geom_segment(data = ss, aes(x = 68 - location.y, xend = 68 - shot.end_location.y, y = location.x, yend = shot.end_location.x))
 ```
 
-![](/assets/2019-01-15-adjusted-xG_files/unnamed-chunk-8-1.png){:class="img-responsive"}
+![](/assets/2019-01-15-adjusted-xG_files/unnamed-chunk-8-1.png)
 
 If we extract the xG of each shot, we can calculate the probabilities of each permutation of events as in our first example:
 
@@ -278,7 +278,7 @@ dat %>%
   soccerShotmap(adj = F, theme = "dark")
 ```
 
-![](/assets/2019-01-15-adjusted-xG_files/unnamed-chunk-13-1.png){:class="img-responsive"}
+![](/assets/2019-01-15-adjusted-xG_files/unnamed-chunk-13-1.png)
 
 ``` r
 dat %>% 
@@ -286,7 +286,7 @@ dat %>%
   soccerShotmap(adj = T, theme = "dark")
 ```
 
-![](/assets/2019-01-15-adjusted-xG_files/unnamed-chunk-14-1.png){:class="img-responsive"}
+![](/assets/2019-01-15-adjusted-xG_files/unnamed-chunk-14-1.png)
 
 ...and cumulative xG for both teams over the course of the game using `soccerxGTimeline`.
 
@@ -294,10 +294,10 @@ dat %>%
 soccerxGTimeline(dat, adj = F)
 ```
 
-![](/assets/2019-01-15-adjusted-xG_files/unnamed-chunk-15-1.png){:class="img-responsive"}
+![](/assets/2019-01-15-adjusted-xG_files/unnamed-chunk-15-1.png)
 
 ``` r
 soccerxGTimeline(dat, adj = T)
 ```
 
-![](/assets/2019-01-15-adjusted-xG_files/unnamed-chunk-16-1.png){:class="img-responsive"}
+![](/assets/2019-01-15-adjusted-xG_files/unnamed-chunk-16-1.png)
