@@ -11,10 +11,12 @@ output:
     preserve_yaml: true
 ---
 
-I started thinking about expected goals (xG) recently after seeing this video shared by JamesTippett on Twitter.
+I started thinking about expected goals (xG) recently after seeing this video shared by James Tippett on Twitter.
 
+<p align="center">
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">How much xG is accumulated in this ten second clip?<a href="https://t.co/jqwPzfETOk">pic.twitter.com/jqwPzfETOk</a></p>&mdash; James Tippett (@JamesTippett) <a href="https://twitter.com/JamesTippett/status/1074625684914491392?ref_src=twsrc%5Etfw">December 17, 2018</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</p>
 
 What are the odds of **not** scoring here? Five shots in the space of a few seconds, and you might expect any of the last four to find the back of the net more often than not — even taking into account the position of the goalkeeper and defenders on the line.
 
@@ -24,19 +26,19 @@ Usually xG answers the question, "What's the probability a shot like this is sco
 
 ------------------------------------------------------------------------
 
-We can answer this question using a fundamental concept of probability theory known as conditional probability. Conditional probability is the probability an event occurrs given that another event has already occurred. In the case of the first two shots in this sequence, this would be the probability that a second shot results in a goal given that the first shot missed, which we could write in mathematical notation as *P*(*G*<sub>2</sub>|*M*<sub>1</sub>).
+We can answer this question using a fundamental concept of probability theory known as conditional probability. Conditional probability is the probability an event occurrs given that another event has already occurred. In the case of the first two shots in this sequence, this would be the probability that a second shot results in a goal given that the first shot missed, which we could write in mathematical notation as *P*(*G*<sub>2</sub>\|*M*<sub>1</sub>).
 
 However, the probability that the second shot is scored given that the first shot misses is simply the xG value for the second shot, 0.3. What we really want to do is consider both shots at once and ask what the probability is that the first shot misses **and** the second shot is scored. This is the intersection probability and can be written as *P*(*M*<sub>1</sub> ∩ *G*<sub>2</sub>).
 
 If we take the formula for conditional probability:  
 
-*P*(*G*<sub>2</sub>|*M*<sub>1</sub>) = *P*(*G*<sub>2</sub> ∩ *M*<sub>1</sub>) / *P*(*M*<sub>1</sub>)
+*P*(*G*<sub>2</sub>\|*M*<sub>1</sub>) = *P*(*G*<sub>2</sub> ∩ *M*<sub>1</sub>) / *P*(*M*<sub>1</sub>)
 
 We can simply rearrange it as:  
 
-*P*(*M*<sub>1</sub> ∩ *G*<sub>2</sub>) = *P*(*G*<sub>2</sub> | *M*<sub>1</sub>) *P*(*M*<sub>1</sub>)
+*P*(*M*<sub>1</sub> ∩ *G*<sub>2</sub>) = *P*(*G*<sub>2</sub> \| *M*<sub>1</sub>) *P*(*M*<sub>1</sub>)
 
-As we said above, *P*(*G*<sub>2</sub> | *M*<sub>1</sub>) in our case is just *P*(*G*<sub>2</sub>), so we have:
+As we said above, *P*(*G*<sub>2</sub> \| *M*<sub>1</sub>) in our case is just *P*(*G*<sub>2</sub>), so we have:
 
 *P*(*M*<sub>1</sub> ∩ *G*<sub>2</sub>) = *P*(*G*<sub>2</sub>) *P*(*M*<sub>1</sub>)
 
@@ -98,7 +100,9 @@ So there we have it: the odds of a goal being scored in this sequence (using our
 
 Now we've got a methodology in mind, let's use an example with real xG estimates. How about this goalmouth scramble from the Tunisia vs England game in the World Cup?
 
+<p align="center">
 <div style="width:100%;height:0px;position:relative;padding-bottom:56.250%;"><iframe src="https://streamable.com/s/fl2om/atvfuu" frameborder="0" width="100%" height="100%" allowfullscreen style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden;"></iframe></div>
+</p>
 
 How many shots have we got here: one, two, three, or four? Macguire's botched header could have been an attempt at a shot or a squared ball, as could Lingard's. And does Sterling's shot count if it goes backward?
 
@@ -197,7 +201,9 @@ soccerPitchHalf() +
   geom_segment(data = ss, aes(x = 68 - location.y, xend = 68 - shot.end_location.y, y = location.x, yend = shot.end_location.x))
 ```
 
+<p align="center">
 ![](/assets/2019-01-15-adjusted-xG_files/unnamed-chunk-8-1.png)
+</p>
 
 If we extract the xG of each shot, we can calculate the probabilities of each permutation of events as in our first example:
 
@@ -286,7 +292,9 @@ dat %>%
   soccerShotmap(adj = T, theme = "dark")
 ```
 
+<p align="center">
 ![](/assets/2019-01-15-adjusted-xG_files/unnamed-chunk-14-1.png)
+</p>
 
 ...and cumulative xG for both teams over the course of the game using `soccerxGTimeline`.
 
@@ -294,10 +302,14 @@ dat %>%
 soccerxGTimeline(dat, adj = F)
 ```
 
+<p align="center">
 ![](/assets/2019-01-15-adjusted-xG_files/unnamed-chunk-15-1.png)
+</p>
 
 ``` r
 soccerxGTimeline(dat, adj = T)
 ```
 
+<p align="center">
 ![](/assets/2019-01-15-adjusted-xG_files/unnamed-chunk-16-1.png)
+</p>
