@@ -97,7 +97,7 @@ So there we have it: the odds of a goal being scored in this sequence (using our
 
 Now we've got a methodology in mind, let's use an example with real xG estimates. How about this goalmouth scramble from the Tunisia vs England game in the World Cup?
 
-INSERT VIDEO
+<div style="width:100%;height:0px;position:relative;padding-bottom:56.250%;"><iframe src="https://streamable.com/s/fl2om/atvfuu" frameborder="0" width="100%" height="100%" allowfullscreen style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden;"></iframe></div>
 
 How many shots have we got here: one, two, three, or four? Macguire's botched header could have been an attempt at a shot or a squared ball, as could Lingard's. And does Sterling's shot count if it goes backward?
 
