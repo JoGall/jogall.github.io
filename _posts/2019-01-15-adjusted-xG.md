@@ -13,7 +13,8 @@ output:
 
 I started thinking about expected goals (xG) recently after seeing this video shared by JamesTippett on Twitter.
 
-EMBED TWEET
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">How much xG is accumulated in this ten second clip?<a href="https://t.co/jqwPzfETOk">pic.twitter.com/jqwPzfETOk</a></p>&mdash; James Tippett (@JamesTippett) <a href="https://twitter.com/JamesTippett/status/1074625684914491392?ref_src=twsrc%5Etfw">December 17, 2018</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 What are the odds of *not* scoring here? Five shots in the space of a few seconds, and you might expect any of the last four to find the back of the net more often than not — even taking into account the position of the goalkeeper and defenders on the line.
 
@@ -48,16 +49,19 @@ We can visualise all our permutations using a simple decision tree; as goal or m
 
 Next, let's calculate the probability of each permutation by running through the mathematical notation for each permutation.
 
-Firstly, the unconditional probability of the first shot being scored is simply the xG of that shot:
-*P*(*G*<sub>1</sub>)=0.2
- Next, the probability of the first shot missing and second shot being scored:
-*P*(*M*<sub>1</sub> ∩ *G*<sub>2</sub>)=0.8 × 0.3 = 0.24
- Then the probability of the first two shots missing and thirds shot being scored:
-*P*(*M*<sub>1</sub> ∩ *M*<sub>2</sub> ∩ *G*<sub>3</sub>)=0.8 × 0.7 × 0.3 = 0.168
- And so on:
-*P*(*M*<sub>1</sub> ∩ *M*<sub>2</sub> ∩ *M*<sub>3</sub> ∩ *G*<sub>4</sub>)=0.8 × 0.7 × 0.7 × 0.3 = 0.1176
-*P*(*M*<sub>1</sub> ∩ *M*<sub>2</sub> ∩ *M*<sub>3</sub> ∩ *M*<sub>4</sub> ∩ *G*<sub>5</sub>)=0.8 × 0.7 × 0.7 × 0.3 = 0.08232
-*P*(*M*<sub>1</sub> ∩ *M*<sub>2</sub> ∩ *M*<sub>3</sub> ∩ *M*<sub>4</sub> ∩ *M*<sub>5</sub>)=0.8 × 0.7 × 0.7 × 0.7 = 0.19208
+Firstly, the unconditional probability of the first shot being scored is simply the xG of that shot:  
+*P*(*G*<sub>1</sub>) = 0.2  
+
+ Next, the probability of the first shot missing and second shot being scored:  
+*P*(*M*<sub>1</sub> ∩ *G*<sub>2</sub>) = 0.8 × 0.3 = 0.24  
+
+Then the probability of the first two shots missing and thirds shot being scored:  
+*P*(*M*<sub>1</sub> ∩ *M*<sub>2</sub> ∩ *G*<sub>3</sub>) = 0.8 × 0.7 × 0.3 = 0.168  
+
+And so on:  
+*P*(*M*<sub>1</sub> ∩ *M*<sub>2</sub> ∩ *M*<sub>3</sub> ∩ *G*<sub>4</sub>) = 0.8 × 0.7 × 0.7 × 0.3 = 0.1176  
+*P*(*M*<sub>1</sub> ∩ *M*<sub>2</sub> ∩ *M*<sub>3</sub> ∩ *M*<sub>4</sub> ∩ *G*<sub>5</sub>) = 0.8 × 0.7 × 0.7 × 0.3 = 0.08232  
+*P*(*M*<sub>1</sub> ∩ *M*<sub>2</sub> ∩ *M*<sub>3</sub> ∩ *M*<sub>4</sub> ∩ *M*<sub>5</sub>) = 0.8 × 0.7 × 0.7 × 0.7 = 0.19208  
 
 As a quick sanity check that we've considered everything, we can add together the probability of all permutations and see that they sum to 1.
 
@@ -77,7 +81,7 @@ Now if we want to know the probabilty of a goal being scored in any of the above
 
 In probability notation, what we're essentially asking is the probability of a goal in the first shot or a goal in the second shot or a goal in the third shot... or a goal in the *n*th shot.
 
-*P*(*G*<sub>1</sub> ∪ *G*<sub>2</sub> ∪ *G*<sub>3</sub> ∪ *G*<sub>4</sub> ∪ *G*<sub>5</sub>)=*P*(*G*<sub>1</sub>)+*P*(*M*<sub>1</sub> ∩ *G*<sub>2</sub>)+*P*(*M*<sub>1</sub> ∩ *M*<sub>2</sub> ∩ *G*<sub>3</sub>)+⋯
+*P*(*G*<sub>1</sub> ∪ *G*<sub>2</sub> ∪ *G*<sub>3</sub> ∪ *G*<sub>4</sub> ∪ *G*<sub>5</sub>) = *P*(*G*<sub>1</sub>) + *P*(*M*<sub>1</sub> ∩ *G*<sub>2</sub>) + *P*(*M*<sub>1</sub> ∩ *M*<sub>2</sub> ∩ *G*<sub>3</sub>) + ⋯
 
 Or since we're adding the probability of every permutation except for all shots missing, we can get there more quickly by just subtracting the probability that every shot misses from 1.
 
@@ -93,8 +97,7 @@ So there we have it: the odds of a goal being scored in this sequence (using our
 
 Now we've got a methodology in mind, let's use an example with real xG estimates. How about this goalmouth scramble from the Tunisia vs England game in the World Cup?
 
-<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">How much xG is accumulated in this ten second clip?<a href="https://t.co/jqwPzfETOk">pic.twitter.com/jqwPzfETOk</a></p>&mdash; James Tippett (@JamesTippett) <a href="https://twitter.com/JamesTippett/status/1074625684914491392?ref_src=twsrc%5Etfw">December 17, 2018</a></blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+INSERT VIDEO
 
 How many shots have we got here: one, two, three, or four? Macguire's botched header could have been an attempt at a shot or a squared ball, as could Lingard's. And does Sterling's shot count if it goes backward?
 
