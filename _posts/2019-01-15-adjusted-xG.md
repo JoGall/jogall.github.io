@@ -16,7 +16,7 @@ shareimg: /img/scramble.jpg
 
 I started thinking about expected goals (xG) recently after seeing this video shared by James Tippett on Twitter.
 
-<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">How much xG is accumulated in this ten second clip?<a href="https://t.co/jqwPzfETOk">pic.twitter.com/jqwPzfETOk</a></p>&mdash; James Tippett (@JamesTippett) <a href="https://twitter.com/JamesTippett/status/1074625684914491392?ref_src=twsrc%5Etfw">December 17, 2018</a></blockquote>
+<blockquote class="twitter-tweet tw-align-center" data-lang="en"><p lang="en" dir="ltr">How much xG is accumulated in this ten second clip?<a href="https://t.co/jqwPzfETOk">pic.twitter.com/jqwPzfETOk</a></p>&mdash; James Tippett (@JamesTippett) <a href="https://twitter.com/JamesTippett/status/1074625684914491392?ref_src=twsrc%5Etfw">December 17, 2018</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 What are the odds of **not** scoring here? Five shots in the space of a few seconds, and you might expect any of the last four to find the back of the net more often than not. Imagine we had an expected goals model — a cautious one, maybe that takes the position of the goalkeeper and defenders into account — which assigned probabilities of each of these shots being scored as (and I'm pulling these figures out of thin air): 0.2, 0.3, 0.3, 0.3, and 0.3 xG. Would that mean that this sequence contains a total of 0.2 + 0.3 + 0.3 + 0.3 + 0.3 = 1.4 xG? Surely common sense suggests a single sequence can't exceed 1 xG because it's not possible to score more than 1 goal in any given attack?
@@ -31,7 +31,7 @@ However, the probability that the second shot is scored given that the first sho
 
 If we take the formula for conditional probability:  
 
-*P*(*G*<sub>2</sub>\|*M*<sub>1</sub>) = *P*(*G*<sub>2</sub> ∩ *M*<sub>1</sub>) / *P*(*M*<sub>1</sub>)
+*P*(*G*<sub>2</sub> \| *M*<sub>1</sub>) = *P*(*G*<sub>2</sub> ∩ *M*<sub>1</sub>) / *P*(*M*<sub>1</sub>)
 
 
 We can simply rearrange it as:  
