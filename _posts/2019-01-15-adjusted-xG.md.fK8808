@@ -4,21 +4,19 @@ title: Per possession adjusted xG
 subtitle: Goalmouth scrambles and conditional probability
 author: "Joe Gallagher"
 date: "2019-01-15"
-tags: [R, football / soccer, xG, probability]
+tags: [R, soccer, xG, probability]
 output: 
   md_document:
     variant: markdown_github
     preserve_yaml: true
-always_allow_html: yes
-bigimg: /img/scramble.png
-shareimg: /img/scramble.png
 ---
 
 I started thinking about expected goals (xG) recently after seeing this video shared by James Tippett on Twitter.
 
-
+<p align="center">
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">How much xG is accumulated in this ten second clip?<a href="https://t.co/jqwPzfETOk">pic.twitter.com/jqwPzfETOk</a></p>&mdash; James Tippett (@JamesTippett) <a href="https://twitter.com/JamesTippett/status/1074625684914491392?ref_src=twsrc%5Etfw">December 17, 2018</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</p>
 
 What are the odds of **not** scoring here? Five shots in the space of a few seconds, and you might expect any of the last four to find the back of the net more often than not. Imagine we had an expected goals model — a cautious one, maybe that takes the position of the goalkeeper and defenders into account — which assigned probabilities of each of these shots being scored as (and I'm pulling these figures out of thin air): 0.2, 0.3, 0.3, 0.3, and 0.3 xG. Would that mean that this sequence contains a total of 0.2 + 0.3 + 0.3 + 0.3 + 0.3 = 1.4 xG? Surely common sense suggests a single sequence can't exceed 1 xG because it's not possible to score more than 1 goal in any given attack?
 
@@ -46,7 +44,7 @@ As we said above, *P*(*G*<sub>2</sub> \| *M*<sub>1</sub>) in our case is just *P
 
 ------------------------------------------------------------------------
 
-Now if we want to estimate the probability of a goal being scored from **any** of these five shots, we should consider the intersection probability of every possible permutation of events. A goal could come from the first shot being scored (meaning we wouldn't see shots 2, 3, 4, or 5), or could come from the first shot missing and the second shot being scored (meaning we wouldn't see shots 3, 4, or 5), and so on.
+Now if we want to estimate the probability of a goal being scored from **any** shot in our five shot sequence above, we should consider the intersection probability of every possible permutation of events. A goal could come from the first shot being scored (meaning we wouldn't see shots 2, 3, 4, or 5), or could come from the first shot missing and the second shot being scored (meaning we wouldn't see shots 3, 4, or 5), and so on.
 
 We can visualise all our permutations using a simple decision tree. As scoring and missing are the only two possibilities at any branch, the probability of any shot missing must be 1 - xG.
 
@@ -88,7 +86,7 @@ Now if we want to know the probabilty of a goal being scored in any of the above
 
     ## [1] 0.80792
 
-What we're essentially asking is the probability of a goal being scored in the first shot or the second shot or the third shot ... or the *n*th shot, which in mathematical notation is:
+In probability notation, what we're essentially asking is the probability of a goal in the first shot or a goal in the second shot or a goal in the third shot... or a goal in the *n*th shot.
 
 *P*(*G*<sub>1</sub> ∪ *G*<sub>2</sub> ∪ *G*<sub>3</sub> ∪ *G*<sub>4</sub> ∪ *G*<sub>5</sub>) = *P*(*G*<sub>1</sub>) + *P*(*M*<sub>1</sub> ∩ *G*<sub>2</sub>) + *P*(*M*<sub>1</sub> ∩ *M*<sub>2</sub> ∩ *G*<sub>3</sub>) + ⋯
 
@@ -106,7 +104,9 @@ So there we have it: the odds of a goal being scored in this sequence (using our
 
 Now we've got a methodology in mind, let's use an example with real xG estimates. How about this goalmouth scramble from the Tunisia vs England game in the World Cup?
 
+<p align="center">
 <div style="width:100%;height:0px;position:relative;padding-bottom:56.250%;"><iframe src="https://streamable.com/s/fl2om/atvfuu" frameborder="0" width="100%" height="100%" allowfullscreen style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden;"></iframe></div>
+</p>
 
 How many shots have we got here: one, two, three, or four? Maguire's somewhat-fluffed header might have been an attempt at a shot or a squared ball, as might Alli's have been. And does Sterling's shot even count if it goes backward?
 
@@ -188,7 +188,9 @@ soccerPitchHalf() +
   geom_segment(data = ss, aes(x = 68 - location.y, xend = 68 - shot.end_location.y, y = location.x, yend = shot.end_location.x))
 ```
 
+<p align="center">
 ![](/assets/2019-01-15-adjusted-xG_files/unnamed-chunk-8-1.png)
+</p>
 
 If we extract the xG of each shot, we can calculate the probabilities of each permutation of events as in our first example.
 
@@ -279,7 +281,9 @@ dat %>%
   soccerShotmap(adj = T, theme = "dark")
 ```
 
+<p align="center">
 ![](/assets/2019-01-15-adjusted-xG_files/unnamed-chunk-14-1.png)
+</p>
 
 `soccerxGTimeline` can show the cumulative xG over the course of the game for both teams, either raw xG...
 
@@ -289,11 +293,14 @@ soccerxGTimeline(dat, adj = F)
 
 or adjusted xG.
 
+<p align="center">
 ![](/assets/2019-01-15-adjusted-xG_files/unnamed-chunk-15-1.png)
-
+</p>
 
 ``` r
 soccerxGTimeline(dat, adj = T)
 ```
 
+<p align="center">
 ![](/assets/2019-01-15-adjusted-xG_files/unnamed-chunk-16-1.png)
+</p>
