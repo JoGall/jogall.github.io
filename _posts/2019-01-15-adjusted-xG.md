@@ -25,7 +25,7 @@ Usually xG answers the question, "What's the probability a shot like this is sco
 
 ------------------------------------------------------------------------
 
-We can answer this question using a fundamental concept of probability theory known as conditional probability. Conditional probability is the probability an event occurrs given that another event has already occurred. In the case of the first two shots in this sequence, this would be the probability that a second shot results in a goal given that the first shot missed, which we could write in mathematical notation as *P*(*G*<sub>2</sub>\|*M*<sub>1</sub>).
+We can answer this question using a fundamental concept of probability theory known as conditional probability. Conditional probability is the probability an event occurrs given that another event has already occurred. In the case of the first two shots in this sequence, this would be the probability that a second shot results in a goal given that the first shot missed, which we could write in mathematical notation as *P*(*G*<sub>2</sub> \| *M*<sub>1</sub>).
 
 However, the probability that the second shot is scored given that the first shot misses is simply the xG value for the second shot, 0.3. What we really want to do is consider both shots at once and ask what the probability is that the first shot misses **and** the second shot is scored. This is the intersection probability and can be written as *P*(*M*<sub>1</sub> ∩ *G*<sub>2</sub>).
 
