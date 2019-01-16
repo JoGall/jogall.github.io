@@ -62,12 +62,12 @@ Next, the intersection probability of the first shot missing and second shot bei
 *P*(*M*<sub>1</sub> ∩ *G*<sub>2</sub>) = 0.8 × 0.3 = 0.24  
 
 
-And so on for the third, fourth, and fifth shot being scored:
+And so on for the third, fourth, and fifth shot being scored:  
 *P*(*M*<sub>1</sub> ∩ *M*<sub>2</sub> ∩ *G*<sub>3</sub>) = 0.8 × 0.7 × 0.3 = 0.168  
 *P*(*M*<sub>1</sub> ∩ *M*<sub>2</sub> ∩ *M*<sub>3</sub> ∩ *G*<sub>4</sub>) = 0.8 × 0.7 × 0.7 × 0.3 = 0.1176  
 *P*(*M*<sub>1</sub> ∩ *M*<sub>2</sub> ∩ *M*<sub>3</sub> ∩ *M*<sub>4</sub> ∩ *G*<sub>5</sub>) = 0.8 × 0.7 × 0.7 × 0.3 = 0.08232  
 
-Finally, the intersection probability of all shots missing:
+Finally, the intersection probability of all shots missing:  
 *P*(*M*<sub>1</sub> ∩ *M*<sub>2</sub> ∩ *M*<sub>3</sub> ∩ *M*<sub>4</sub> ∩ *M*<sub>5</sub>) = 0.8 × 0.7 × 0.7 × 0.7 = 0.19208  
 
 
@@ -258,7 +258,7 @@ ss %>%
 
 ------------------------------------------------------------------------
 
-This is the long and short of what's been added to the [`soccermatics`](https://github.com/JoGall/soccermatics) functions which use xG.
+This is the latest additions to the `soccermatics` functions which use xG.
 
 `soccerShotmap` can compare raw xG for England...
 
@@ -270,7 +270,7 @@ dat %>%
 
 ![](/assets/2019-01-15-adjusted-xG_files/unnamed-chunk-13-1.png)
 
-or adjusted xG for England.
+...or adjusted xG.
 
 ``` r
 dat %>% 
@@ -286,7 +286,7 @@ dat %>%
 soccerxGTimeline(dat, adj = F)
 ```
 
-or adjusted xG.
+...or adjusted xG.
 
 ![](/assets/2019-01-15-adjusted-xG_files/unnamed-chunk-15-1.png)
 
