@@ -10,8 +10,8 @@ output:
     variant: markdown_github
     preserve_yaml: true
 always_allow_html: yes
-bigimg: /img/scramble.png
-shareimg: /img/scramble.png
+bigimg: /img/scramble.jpg
+shareimg: /img/scramble.jpg
 ---
 
 I started thinking about expected goals (xG) recently after seeing this video shared by James Tippett on Twitter.
