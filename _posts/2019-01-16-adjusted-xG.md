@@ -11,7 +11,7 @@ output:
     preserve_yaml: true
 always_allow_html: yes
 bigimg: /img/scramble.jpg
-shareimg: /img/scramble.jpg
+share-img: /img/scramble.jpg
 ---
 
 I started thinking about expected goals (xG) recently after seeing this video shared by James Tippett on Twitter.
