@@ -54,7 +54,6 @@ We can visualise all our permutations using a simple decision tree. As scoring a
 Next, let's calculate the probability of each permutation by running through their mathematical notations.
 
 Firstly, the unconditional probability of the first shot being scored is simply the xG of that shot:  
-
 *P*(*G*<sub>1</sub>) = 0.2  
 
 
