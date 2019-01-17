@@ -55,20 +55,20 @@ Next, let's calculate the probability of each permutation by running through the
 
 Firstly, the unconditional probability of the first shot being scored is simply the xG of that shot:  
 
-    *P*(*G*<sub>1</sub>) = 0.2  
+*P*(*G*<sub>1</sub>) = 0.2  
 
 
 Next, the intersection probability of the first shot missing and second shot being scored:  
-    *P*(*M*<sub>1</sub> ∩ *G*<sub>2</sub>) = 0.8 × 0.3 = 0.24  
+*P*(*M*<sub>1</sub> ∩ *G*<sub>2</sub>) = 0.8 × 0.3 = 0.24  
 
 
 And so on for the third, fourth, and fifth shot being scored:  
-    *P*(*M*<sub>1</sub> ∩ *M*<sub>2</sub> ∩ *G*<sub>3</sub>) = 0.8 × 0.7 × 0.3 = 0.168  
-    *P*(*M*<sub>1</sub> ∩ *M*<sub>2</sub> ∩ *M*<sub>3</sub> ∩ *G*<sub>4</sub>) = 0.8 × 0.7 × 0.7 × 0.3 = 0.1176  
-    *P*(*M*<sub>1</sub> ∩ *M*<sub>2</sub> ∩ *M*<sub>3</sub> ∩ *M*<sub>4</sub> ∩ *G*<sub>5</sub>) = 0.8 × 0.7 × 0.7 × 0.3 = 0.08232  
+*P*(*M*<sub>1</sub> ∩ *M*<sub>2</sub> ∩ *G*<sub>3</sub>) = 0.8 × 0.7 × 0.3 = 0.168  
+*P*(*M*<sub>1</sub> ∩ *M*<sub>2</sub> ∩ *M*<sub>3</sub> ∩ *G*<sub>4</sub>) = 0.8 × 0.7 × 0.7 × 0.3 = 0.1176  
+*P*(*M*<sub>1</sub> ∩ *M*<sub>2</sub> ∩ *M*<sub>3</sub> ∩ *M*<sub>4</sub> ∩ *G*<sub>5</sub>) = 0.8 × 0.7 × 0.7 × 0.3 = 0.08232  
 
 Finally, the intersection probability of all shots missing:  
-    *P*(*M*<sub>1</sub> ∩ *M*<sub>2</sub> ∩ *M*<sub>3</sub> ∩ *M*<sub>4</sub> ∩ *M*<sub>5</sub>) = 0.8 × 0.7 × 0.7 × 0.7 = 0.19208  
+*P*(*M*<sub>1</sub> ∩ *M*<sub>2</sub> ∩ *M*<sub>3</sub> ∩ *M*<sub>4</sub> ∩ *M*<sub>5</sub>) = 0.8 × 0.7 × 0.7 × 0.7 = 0.19208  
 
 
 As a quick sanity check to make sure we've considered every possible outcome, we can add together the probability of all permutations and see that they sum to 1.
@@ -89,7 +89,7 @@ Now if we want to know the probabilty of a goal being scored in any of the above
 
 What we're essentially asking is the probability of a goal being scored in the first shot or the second shot or the third shot ... or the *n*th shot, which in mathematical notation is:
 
-    *P*(*G*<sub>1</sub> ∪ *G*<sub>2</sub> ∪ *G*<sub>3</sub> ∪ *G*<sub>4</sub> ∪ *G*<sub>5</sub>) = *P*(*G*<sub>1</sub>) + *P*(*M*<sub>1</sub> ∩ *G*<sub>2</sub>) + *P*(*M*<sub>1</sub> ∩ *M*<sub>2</sub> ∩ *G*<sub>3</sub>) + ⋯
+*P*(*G*<sub>1</sub> ∪ *G*<sub>2</sub> ∪ *G*<sub>3</sub> ∪ *G*<sub>4</sub> ∪ *G*<sub>5</sub>) = *P*(*G*<sub>1</sub>) + *P*(*M*<sub>1</sub> ∩ *G*<sub>2</sub>) + *P*(*M*<sub>1</sub> ∩ *M*<sub>2</sub> ∩ *G*<sub>3</sub>) + ⋯
 
 Or since we're adding the probability of every permutation except for all shots missing, we can get there more quickly by just subtracting the probability that every shot misses from 1.
 
