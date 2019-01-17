@@ -58,16 +58,19 @@ Firstly, the unconditional probability of the first shot being scored is simply 
 
 
 Next, the intersection probability of the first shot missing and second shot being scored:  
-*P*(*M*<sub>1</sub> ∩ *G*<sub>2</sub>) = 0.8 × 0.3 = 0.24  
+
+    *P*(*M*<sub>1</sub> ∩ *G*<sub>2</sub>) = 0.8 × 0.3 = 0.24  
 
 
 And so on for the third, fourth, and fifth shot being scored:  
-*P*(*M*<sub>1</sub> ∩ *M*<sub>2</sub> ∩ *G*<sub>3</sub>) = 0.8 × 0.7 × 0.3 = 0.168  
-*P*(*M*<sub>1</sub> ∩ *M*<sub>2</sub> ∩ *M*<sub>3</sub> ∩ *G*<sub>4</sub>) = 0.8 × 0.7 × 0.7 × 0.3 = 0.1176  
-*P*(*M*<sub>1</sub> ∩ *M*<sub>2</sub> ∩ *M*<sub>3</sub> ∩ *M*<sub>4</sub> ∩ *G*<sub>5</sub>) = 0.8 × 0.7 × 0.7 × 0.3 = 0.08232  
+
+> *P*(*M*<sub>1</sub> ∩ *M*<sub>2</sub> ∩ *G*<sub>3</sub>) = 0.8 × 0.7 × 0.3 = 0.168  
+> *P*(*M*<sub>1</sub> ∩ *M*<sub>2</sub> ∩ *M*<sub>3</sub> ∩ *G*<sub>4</sub>) = 0.8 × 0.7 × 0.7 × 0.3 = 0.1176  
+> *P*(*M*<sub>1</sub> ∩ *M*<sub>2</sub> ∩ *M*<sub>3</sub> ∩ *M*<sub>4</sub> ∩ *G*<sub>5</sub>) = 0.8 × 0.7 × 0.7 × 0.3 = 0.08232  
 
 Finally, the intersection probability of all shots missing:  
-*P*(*M*<sub>1</sub> ∩ *M*<sub>2</sub> ∩ *M*<sub>3</sub> ∩ *M*<sub>4</sub> ∩ *M*<sub>5</sub>) = 0.8 × 0.7 × 0.7 × 0.7 = 0.19208  
+
+&nbsp;&nbsp;&nbsp;&nbsp;*P*(*M*<sub>1</sub> ∩ *M*<sub>2</sub> ∩ *M*<sub>3</sub> ∩ *M*<sub>4</sub> ∩ *M*<sub>5</sub>) = 0.8 × 0.7 × 0.7 × 0.7 = 0.19208  
 
 
 As a quick sanity check to make sure we've considered every possible outcome, we can add together the probability of all permutations and see that they sum to 1.
