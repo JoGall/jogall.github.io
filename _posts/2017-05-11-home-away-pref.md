@@ -5,7 +5,7 @@ subtitle: Home and away preferences in the Premier League
 date: "2017-05-12"
 tags: [football / soccer, R]
 bigimg: /img/home-advantage.jpg
-share-img: /assets/2017-05-10-home-away-pref_files/unnamed-chunk-9-1.png
+share-img: https://github.com/JoGall/jogall.github.io/blob/master/assets/2017-05-10-home-away-pref_files/unnamed-chunk-9-1.png?raw=true
 ---
 
 

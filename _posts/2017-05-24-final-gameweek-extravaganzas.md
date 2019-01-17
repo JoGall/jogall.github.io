@@ -9,7 +9,7 @@ output:
     variant: markdown_github
     preserve_yaml: true
 bigimg: /img/goal.jpg
-share-img: /assets/2017-05-24-final-gameweek-extravaganzas_files/unnamed-chunk-11-1.png
+share-img: https://github.com/JoGall/jogall.github.io/blob/master/assets/2017-05-24-final-gameweek-extravaganzas_files/unnamed-chunk-11-1.png?raw=true
 ---
 
 Sunday's conclusion to the 2016-17 EPL season produced an impressive haul of 37 goals. What's more, they were all delivered in the space of 2 hours thanks to the final round of games being played simultaneously - truly the stuff dreams are made of for those watching at home.

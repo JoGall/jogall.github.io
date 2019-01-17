@@ -11,7 +11,7 @@ output:
     preserve_yaml: true
 always_allow_html: yes
 bigimg: /img/robin-hood.png
-share-img: "https://github.com/JoGall/jogall.github.io/blob/master/img/robin-hood.png"
+share-img: https://github.com/JoGall/jogall.github.io/blob/master/img/robin-hood.png?raw=true
 ---
 
 My [last post](https://jogall.github.io/2017-08-04-robin-hood-teams/) looked at Robin Hood teams - taking points from the top teams only to give them away to the lower teams - and tried to quantify `Hoodability` as the difference in points per game (ppg) against the top 6 teams and ppg against the bottom 6.

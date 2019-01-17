@@ -9,7 +9,7 @@ output:
     variant: markdown_github
     preserve_yaml: true
 bigimg: /img/yawn.jpg
-share-img: /assets/2017-05-19-does-excitement-bring-success_files/unnamed-chunk-25-1.png
+share-img: https://github.com/JoGall/jogall.github.io/blob/master/assets/2017-05-19-does-excitement-bring-success_files/unnamed-chunk-25-1.png?raw=true
 ---
 
 The motivation for this post came from watching yet another of Man United's goalless games, this time against Southampton on Wednesday night. It's one part a serious examination of United's current trend of low scoring -- how this fits in with their previous Premier League record and whether 'negative football' can explain their recent lack of league success -- and one part the schadenfreude of a Liverpool fan looking to see if I can pronounce them The Most Boring Team Ever.
