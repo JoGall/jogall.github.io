@@ -37,8 +37,8 @@ Skills
 
 * **Data analysis**
     * **Statistical analysis** (regression, general linear models, mixed models, principal component analysis, bootstrapping, Bayesian inference)
-    * [**Machine learning**](e.g. predicting customer attrition with random forest)
-    * **Deep learning** using Keras & TensorFlow (e.g. audio-based facial animation using convolutional network, [text generation with LSTM](https://github.com/JoGall/shiny-apps/tree/master/kanyAI))
+    * **Machine learning** (e.g. predicting customer attrition with random forests)
+    * **Deep learning** with Keras and TensorFlow (e.g. audio-based facial animation using convolutional network, [text generation with LSTM](https://github.com/JoGall/shiny-apps/tree/master/kanyAI))
     * **Spatial data** analysis (e.g. [ethological analysis](https://github.com/JoGall/rubitrail))
     * **Forecasting** time series data (incl multiseasonal patterns, regressors)
     * **Natural language processing** and sentiment analysis (n-grams, vocabulary-based vectorisation)
@@ -48,11 +48,14 @@ Skills
     * Monte Carlo simulation (e.g. [World Cup success based on Elo ranking](https://github.com/JoGall/world-cup-sim/blob/master/funs.R), expected points based on expected goals)
     
 * **Data processing and warehousing**
-    * AWS: Data warehousing with Data Pipelines and Redshift, and automated interaction with Command Line Interface
-    * Integration with web APIs (Google Firebase, Google Analytics, Google Maps, OpenStreetMap)
+    * Advanced **SQL** with Redshift and PostgreSQL (UDFs, CTEs, query optimisation)
+    * **AWS**: Data warehousing and maintenance with Data Pipelines, Redshift, and Command Line Interface
     * Data warehousing and query parallelisation with **Pivotal Greenplum**
     * Database administration (pgAdmin, phpMyAdmin)
-    * Database connection using DBI-compliant interfaces (RPostgreSQL, PivotalR)
+    * **Web scraping** (Selenium, JSON / XML)
+    * Integration with web APIs (Google Firebase, Google Analytics, Google Maps, OpenStreetMap)
+    * Active external database connections with DBI-compliant interfaces (RPostgreSQL, PivotalR)
+    * Advanced R for efficient, scalable, and exportable solutions (tidyverse, data.table, caret, H2O, keras, reticulate, shiny)
     
 * **Data visualisation**
     * Spatial data mapping with leaflet, webgl, etc...
@@ -62,13 +65,11 @@ Skills
     * Advanced ggplot (e.g. [blog](https://jogall.github.io/2017-05-24-final-gameweek-extravaganzas/) [posts](https://jogall.github.io/2017-08-04-robin-hood-teams/))
 
 * Miscellanous
-    * **Web scraping** (Selenium, JSON, XML)
-    * [**Shell scripting**](https://github.com/JoGall/quantdb) on Linux OS
-    * **Web development** (HTML5, CSS3, JavaScript; dynamic website design using CMSs [WordPress, Joomla], static site generation (Jekyll))
-    * Microsoft Excel: advanced formulae (e.g. VLOOKUP, SUMIF), pivot tables, conditional formatting
-    * Automated **image analysis** (e.g. [here](https://github.com/JoGall/nylon-encapsulation), [here](https://github.com/JoGall/ladybird-spots) and [here](https://github.com/JoGall/cuticular-melanisation)) and [motion tracking](https://sourceforge.net/projects/ubitrail/) in in C++
-    * Automated task scheduling
+    * [**Shell scripting**](https://github.com/JoGall/quantdb) and automated task scheduling
+    * **Web development** (HTML5, CSS3, JavaScript; dynamic website design with CMSs [WordPress, Joomla], static site generation (Jekyll))
     * Automated report production with RMarkdown
+    * Microsoft Excel: advanced formulae (e.g. VLOOKUP, SUMIF), pivot tables, conditional formatting
+    * Automated **image analysis** (e.g. [here](https://github.com/JoGall/nylon-encapsulation), [here](https://github.com/JoGall/ladybird-spots) and [here](https://github.com/JoGall/cuticular-melanisation)) and [motion tracking](https://sourceforge.net/projects/ubitrail/) in C++)
 
 #### Communication, teaching, and teamwork skills
 * Oral and poster **presentations** at scientific conferences
@@ -79,5 +80,3 @@ Skills
 * Contributor to **outreach** programme 'Discovery' at University of Sheffield, a series of interactive workshops and talks aimed at promoting STEM to schoolchildren (2012-2016)
 
 ------------
-
-#### [CV (PDF version)](http://jogall.github.io/JDGallagher_CV.pdf)
