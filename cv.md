@@ -15,8 +15,7 @@ Education
 ---------
 
 **Doctor of Philosophy**, University of Sheffield, UK  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thesis title: "[Gregarious immunisation in the mealworm beetle, *Tenebrio molitor*](http://etheses.whiterose.ac.uk/12275/)"
-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thesis title: "[Gregarious immunisation in the mealworm beetle, *Tenebrio molitor*](http://etheses.whiterose.ac.uk/12275/)"  
 **MBiolSci Zoology**, University of Sheffield, UK
 
 
@@ -45,7 +44,7 @@ Skills
     * Customer segmentation (k-means **clustering**, DBSCAN)
     * Matchmaking (**collaborative filtering**) and content recommendation (content-based recommenders)
     * [**Quantitative financial modelling**](https://github.com/JoGall/quantdb) (RSI, MACD, percentile rank)
-    * Monte Carlo simulation (e.g. [World Cup success based on Elo ranking](https://github.com/JoGall/world-cup-sim/blob/master/funs.R), expected points based on expected goals)
+    * Monte Carlo simulation (e.g. [World Cup success based on Elo ranking](https://github.com/JoGall/world-cup-sim/blob/master/funs.R), expected points based on expected goals)  
     
 * **Data processing and warehousing**
     * Advanced **SQL** with Redshift and PostgreSQL (UDFs, CTEs, query optimisation)
@@ -55,21 +54,21 @@ Skills
     * **Web scraping** (Selenium, JSON / XML)
     * Integration with web APIs (Google Firebase, Google Analytics, Google Maps, OpenStreetMap)
     * Active external database connections with DBI-compliant interfaces (RPostgreSQL, PivotalR)
-    * Advanced R for efficient, scalable, and exportable solutions (tidyverse, data.table, caret, H2O, keras, reticulate, shiny)
+    * Advanced R for efficient, scalable, and exportable solutions (tidyverse, data.table, caret, H2O, keras, reticulate, shiny)  
     
 * **Data visualisation**
     * Spatial data mapping with leaflet, webgl, etc...
     * Interactive apps and dashboards in [**shiny**](https://jdgallagher.shinyapps.io/seasonStats/)
     * Interactive javascript graphing in [**plotly.js**](https://plot.ly/~jogal) and D3.js
     * Tableau
-    * Advanced ggplot (e.g. [blog](https://jogall.github.io/2017-05-24-final-gameweek-extravaganzas/) [posts](https://jogall.github.io/2017-08-04-robin-hood-teams/))
+    * Advanced ggplot (e.g. [blog](https://jogall.github.io/2017-05-24-final-gameweek-extravaganzas/) [posts](https://jogall.github.io/2017-08-04-robin-hood-teams/))  
 
 * Miscellanous
     * [**Shell scripting**](https://github.com/JoGall/quantdb) and automated task scheduling
     * **Web development** (HTML5, CSS3, JavaScript; dynamic website design with CMSs [WordPress, Joomla], static site generation (Jekyll))
     * Automated report production with RMarkdown
     * Microsoft Excel: advanced formulae (e.g. VLOOKUP, SUMIF), pivot tables, conditional formatting
-    * Automated **image analysis** (e.g. [here](https://github.com/JoGall/nylon-encapsulation), [here](https://github.com/JoGall/ladybird-spots) and [here](https://github.com/JoGall/cuticular-melanisation)) and [motion tracking](https://sourceforge.net/projects/ubitrail/) in C++)
+    * Automated **image analysis** (e.g. [here](https://github.com/JoGall/nylon-encapsulation), [here](https://github.com/JoGall/ladybird-spots) and [here](https://github.com/JoGall/cuticular-melanisation)) and [motion tracking](https://sourceforge.net/projects/ubitrail/) in C++)  
 
 #### Communication, teaching, and teamwork skills
 * Oral and poster **presentations** at scientific conferences
